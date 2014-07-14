@@ -1,0 +1,28 @@
+<?php
+
+/**
+ * @file
+ * Modifications to feeds functionality.
+ */
+
+/**
+ * Implements hook_form_alter()
+ */
+function feeds_mods_form_feed_importer_node_form_alter(&$form, &$form_state, $form_id) {
+    
+    // Is this a new feed importer?
+    if ( empty( $form['nid']['#value'] ) ) {
+        
+        // Set the default value to 'http://' as a hint that it is required in
+        // order to provide a valid url.
+        // This will also overwrite any url that was inserted as a result of
+        // running a feed import through the admin form.
+        $form['feeds']['FeedsHTTPFetcher']['source']['#default_value']
+            = 'http://';
+    }
+}
+
+
+function feeds_mods_form_alter(&$form, &$form_state, $form_id) {
+    /* dsm(func_get_args() ); */
+}
