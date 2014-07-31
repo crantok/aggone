@@ -1,0 +1,105 @@
+<?php
+
+/**
+ * @file
+ * Make OG group terms of which the current user is a member available as tags
+ * on content.
+ */
+
+function group_tags_menu() {
+  return array(
+
+    'node/%node/add-to-interest-group/%taxonomy_term' => array(
+      'type' => MENU_CALLBACK,
+      'access callback' => '_group_tags_access_add_to_group',
+      'access arguments' => array( 3 ),
+      'page callback' => '_group_tags_add_to_group',
+      'page arguments' => array( 1, 3 ),
+    ),
+
+  );
+}
+
+function _group_tags_access_add_to_group( $term_group ) {
+  return TRUE;
+  return og_user_access( 'taxonomy_term', $term_group->tid, 'Create Imported article content' );
+}
+
+function _group_tags_add_to_group( $node_to_tag, $term_group ) {
+  dsm( $node_to_tag );
+
+  $existing_terms =
+    field_get_items( 'node', $node_to_tag, 'field_interest_groups' );
+  dsm( $existing_terms );
+
+  // Put the array of term IDs into an easily interrogated form.
+  foreach ( $existing_terms as $key => $tag ) {
+    $existing_terms[$key] = $tag['tid'];
+  }
+  dsm( $existing_terms );
+
+  if ( ! in_array( $term_group->tid, $existing_terms ) ) {
+
+    $new_terms = array_merge( $existing_terms, array( $term_group->tid ) );
+    dsm( $new_terms );
+
+    // Return the array of term IDs to the form required by fields
+    foreach ( $new_terms as $key => $tid ) {
+      $new_terms[$key]= array('tid' => $tid );
+    }
+    dsm( $new_terms );
+
+    field_set_items('node', $node_to_tag, 'field_interest_groups', $new_terms);
+    node_save( $node_to_tag );
+  }
+
+  drupal_goto( urlencode($_GET['destination']) );
+}
+
+/**
+* Sets the field items
+* Stolen from https://www.drupal.org/node/1500308#comment-6832522
+* @param $entity_type
+* @param $entity
+* @param $field_name
+* @param $items
+* @param $langcode
+*/
+function field_set_items($entity_type, &$entity, $field_name, $items, $langcode = NULL) {
+  if ($langcode) {
+    $lang = $langcode;
+  } else {
+    $field_info = field_info_field($field_name);
+    $lang = $field_info['translatable'] ? entity_language($entity_type, $entity) : LANGUAGE_NONE;
+  }
+  if (empty($entity->{$field_name})) {
+    $entity->{$field_name} = array();
+  }
+  $entity->{$field_name}[$lang] = $items;
+}
+
+
+/**
+ *
+ */
+function group_tags_page_alter() {
+  // dsm( array(__FUNCTION__ => func_get_args() ));
+  $terms = _group_tags_get_users_taxonomy_groups();
+  foreach ( $terms as $term ) {
+    dsm( _group_tags_get_tag_link_markup( $term, arg(1) ) );
+  }
+}
+
+function _group_tags_get_users_taxonomy_groups($user=NULL) {
+  return taxonomy_term_load_multiple(
+    og_get_groups_by_user($user, 'taxonomy_term')
+  );
+}
+
+function _group_tags_get_tag_link_markup($term, $nid) {
+  return l(
+    t("Add to interest group @term_name", array( '@term_name' => $term->name ) ),    // title
+    url("node/$nid/add-to-interest-group/$term->tid"),  // url
+    array('query' => drupal_get_destination() )         // options
+    );
+}

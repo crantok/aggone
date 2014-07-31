@@ -1,0 +1,3 @@
+name = Group tags
+description = Make OG group terms of which the current user is a member available as tags on content.
+core = 7.x
