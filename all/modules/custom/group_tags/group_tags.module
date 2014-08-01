@@ -17,43 +17,82 @@ function group_tags_menu() {
       'page arguments' => array( 1, 3 ),
     ),
 
+    'node/%node/remove-from-interest-group/%taxonomy_term' => array(
+      'type' => MENU_CALLBACK,
+      'access callback' => '_group_tags_access_remove_from_group',
+      'access arguments' => array( 3 ),
+      'page callback' => '_group_tags_remove_from_group',
+      'page arguments' => array( 1, 3 ),
+    ),
+
   );
 }
 
 function _group_tags_access_add_to_group( $term_group ) {
-  return TRUE;
   return og_user_access( 'taxonomy_term', $term_group->tid, 'Create Imported article content' );
 }
 
+function _group_tags_access_remove_from_group( $term_group ) {
+  return og_user_access( 'taxonomy_term', $term_group->tid, 'Delete any Imported article content' );
+}
+
 function _group_tags_add_to_group( $node_to_tag, $term_group ) {
-  dsm( $node_to_tag );
 
-  $existing_terms =
-    field_get_items( 'node', $node_to_tag, 'field_interest_groups' );
-  dsm( $existing_terms );
+  $existing_terms = get_one_dimensional_array_from_field_items(
+    field_get_items( 'node', $node_to_tag, 'field_interest_groups' ), 'tid'
+  );
 
-  // Put the array of term IDs into an easily interrogated form.
-  foreach ( $existing_terms as $key => $tag ) {
-    $existing_terms[$key] = $tag['tid'];
-  }
-  dsm( $existing_terms );
-
+  // Is the given group absent from the terms the node is tagged with?
   if ( ! in_array( $term_group->tid, $existing_terms ) ) {
 
-    $new_terms = array_merge( $existing_terms, array( $term_group->tid ) );
-    dsm( $new_terms );
+    $new_terms = get_field_items_from_one_dimensional_array(
+      array_merge( $existing_terms, array( $term_group->tid ) ), 'tid'
+    );
 
-    // Return the array of term IDs to the form required by fields
-    foreach ( $new_terms as $key => $tid ) {
-      $new_terms[$key]= array('tid' => $tid );
-    }
-    dsm( $new_terms );
-
+    // Save the node with the expanded list of terms.
     field_set_items('node', $node_to_tag, 'field_interest_groups', $new_terms);
     node_save( $node_to_tag );
   }
 
-  drupal_goto( urlencode($_GET['destination']) );
+  // Whatever happened, now take the user to somewhere useful.
+  if ( isset($_GET['destination']) ) {
+    $destination = urlencode($_GET['destination']);
+  }
+  else {
+    $destination = arg(0) . '/' . arg(1);
+  }
+  drupal_goto( $destination );
+}
+
+function _group_tags_remove_from_group( $node_to_detag, $term_group ) {
+
+  $existing_terms = get_one_dimensional_array_from_field_items(
+    field_get_items( 'node', $node_to_detag, 'field_interest_groups' ), 'tid'
+  );
+
+  $key_to_delete = array_search($term_group->tid, $existing_terms);
+
+  // Is the node currently tagged with the given group?
+  if ( $key_to_delete !== FALSE ) {
+
+    $new_terms = $existing_terms;
+    unset( $new_terms[$key_to_delete] );
+
+    // Save the node with the truncated list of terms.
+    field_set_items('node', $node_to_detag, 'field_interest_groups',
+      get_field_items_from_one_dimensional_array( $new_terms, 'tid' )
+    );
+    node_save( $node_to_detag );
+  }
+
+  // Whatever happened, now take the user to somewhere useful.
+  if ( isset($_GET['destination']) ) {
+    $destination = urlencode($_GET['destination']);
+  }
+  else {
+    $destination = arg(0) . '/' . arg(1);
+  }
+  drupal_goto( $destination );
 }
 
 /**
@@ -82,24 +121,95 @@ function field_set_items($entity_type, &$entity, $field_name, $items, $langcode 
 /**
  *
  */
-function group_tags_page_alter() {
-  // dsm( array(__FUNCTION__ => func_get_args() ));
-  $terms = _group_tags_get_users_taxonomy_groups();
-  foreach ( $terms as $term ) {
-    dsm( _group_tags_get_tag_link_markup( $term, arg(1) ) );
-  }
-}
+function group_tags_node_view($node, $view_mode, $langcode) {
 
-function _group_tags_get_users_taxonomy_groups($user=NULL) {
-  return taxonomy_term_load_multiple(
-    og_get_groups_by_user($user, 'taxonomy_term')
+  // TO DO : Change to using a theme function or template!!!
+  $node->content['interest_groups_toggle'] = array(
+    '#markup' => _group_tags_get_markup_for_tag_links_node_element($node),
+    '#weight' => 100,
   );
 }
 
-function _group_tags_get_tag_link_markup($term, $nid) {
+function _group_tags_get_markup_for_tag_links_node_element($node) {
+  $users_groups =
+    _group_tags_get_users_taxonomy_groups( array('interest_group') );
+  $nodes_group_ids = _group_tags_get_nodes_interest_group_ids($node);
+
+  $links = array();
+  foreach ($users_groups as $id => $group) {
+    if ( in_array( $id, $nodes_group_ids ) ) {
+      $links[] =
+        _group_tags_get_markup_for_remove_tag_link( $group, $node->nid );
+    }
+    else {
+      $links[] =
+        _group_tags_get_markup_for_add_tag_link( $group, $node->nid );
+    }
+  }
+
+  return _group_tags_get_markup_for_tag_links_list($links);
+}
+
+function _group_tags_get_users_taxonomy_groups( $vocabularies, $user=NULL) {
+
+  $groups = taxonomy_term_load_multiple(
+    og_get_groups_by_user($user, 'taxonomy_term')
+  );
+
+  // Cull groups that are from vocabularies that were not requested.
+  foreach ( $groups as $id => $group ) {
+    if ( ! in_array( $group->vocabulary_machine_name, $vocabularies ) ) {
+      unset( $groups[$id] );
+    }
+  }
+
+  return $groups;
+}
+
+function _group_tags_get_nodes_interest_group_ids($node) {
+
+  $groups = field_get_items( 'node', $node, 'field_interest_groups' );
+  return get_one_dimensional_array_from_field_items( $groups, 'tid' );
+}
+
+function get_one_dimensional_array_from_field_items( $field_items, $key ) {
+  foreach ( $field_items as $index => $item ) {
+    $field_items[$index] = $item[$key];
+  }
+  return $field_items;
+}
+
+function get_field_items_from_one_dimensional_array( $items, $key ) {
+  foreach ( $items as $index => $value ) {
+    $items[$index]= array($key => $value );
+  }
+  return $items;
+}
+
+function _group_tags_get_markup_for_tag_links_list($links) {
+
+  $markup = '<div class="interest-group-toggle"><ul>';
+  foreach ( $links as $link ) {
+    $markup .= '<li>' . $link . '</li>';
+  }
+  $markup .= '</ul></div>';
+  return $markup;
+}
+
+function _group_tags_get_markup_for_add_tag_link($term, $nid) {
   return l(
-    t("Add to interest group @term_name", array( '@term_name' => $term->name ) ),    // title
-    url("node/$nid/add-to-interest-group/$term->tid"),  // url
-    array('query' => drupal_get_destination() )         // options
-    );
+    t('Add to interest group: @term_name',
+      array( '@term_name' => $term->name ) ),
+    url("node/$nid/add-to-interest-group/$term->tid"),
+    array('query' => drupal_get_destination(), 'absolute' => TRUE)
+  );
+}
+
+function _group_tags_get_markup_for_remove_tag_link($term, $nid) {
+  return l(
+    t('Remove from interest group: @term_name',
+      array( '@term_name' => $term->name ) ),
+    url("node/$nid/remove-from-interest-group/$term->tid"),
+    array('query' => drupal_get_destination(), 'absolute' => TRUE)
+  );
 }
