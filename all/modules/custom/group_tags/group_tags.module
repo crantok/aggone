@@ -29,11 +29,11 @@ function group_tags_menu() {
 }
 
 function _group_tags_access_add_to_group( $term_group ) {
-  return og_user_access( 'taxonomy_term', $term_group->tid, 'Create Imported article content' );
+  return og_user_access( 'taxonomy_term', $term_group->tid, 'create imported_article content' );
 }
 
 function _group_tags_access_remove_from_group( $term_group ) {
-  return og_user_access( 'taxonomy_term', $term_group->tid, 'Delete any Imported article content' );
+  return og_user_access( 'taxonomy_term', $term_group->tid, 'delete any imported_article content' );
 }
 
 function _group_tags_add_to_group( $node_to_tag, $term_group ) {
@@ -54,14 +54,7 @@ function _group_tags_add_to_group( $node_to_tag, $term_group ) {
     node_save( $node_to_tag );
   }
 
-  // Whatever happened, now take the user to somewhere useful.
-  if ( isset($_GET['destination']) ) {
-    $destination = urlencode($_GET['destination']);
-  }
-  else {
-    $destination = arg(0) . '/' . arg(1);
-  }
-  drupal_goto( $destination );
+  _group_terms_goto( $node_to_tag );
 }
 
 function _group_tags_remove_from_group( $node_to_detag, $term_group ) {
@@ -85,36 +78,22 @@ function _group_tags_remove_from_group( $node_to_detag, $term_group ) {
     node_save( $node_to_detag );
   }
 
-  // Whatever happened, now take the user to somewhere useful.
+  _group_terms_goto( $node_to_detag );
+}
+
+/**
+ * Redirect the user to somewhere useful.
+ */
+function _group_terms_goto( $node ) {
+
+  // Was there a destination in the URL?
   if ( isset($_GET['destination']) ) {
     $destination = urlencode($_GET['destination']);
   }
   else {
-    $destination = arg(0) . '/' . arg(1);
+    $destination = "node/$node->nid";
   }
   drupal_goto( $destination );
-}
-
-/**
-* Sets the field items
-* Stolen from https://www.drupal.org/node/1500308#comment-6832522
-* @param $entity_type
-* @param $entity
-* @param $field_name
-* @param $items
-* @param $langcode
-*/
-function field_set_items($entity_type, &$entity, $field_name, $items, $langcode = NULL) {
-  if ($langcode) {
-    $lang = $langcode;
-  } else {
-    $field_info = field_info_field($field_name);
-    $lang = $field_info['translatable'] ? entity_language($entity_type, $entity) : LANGUAGE_NONE;
-  }
-  if (empty($entity->{$field_name})) {
-    $entity->{$field_name} = array();
-  }
-  $entity->{$field_name}[$lang] = $items;
 }
 
 
@@ -147,7 +126,11 @@ function _group_tags_get_markup_for_tag_links_node_element($node) {
     }
   }
 
-  return _group_tags_get_markup_for_tag_links_list($links);
+  $links = array_filter( $links );
+
+  if ( ! empty( $links ) ) {
+    return _group_tags_get_markup_for_tag_links_list($links);
+  }
 }
 
 function _group_tags_get_users_taxonomy_groups( $vocabularies, $user=NULL) {
@@ -172,20 +155,6 @@ function _group_tags_get_nodes_interest_group_ids($node) {
   return get_one_dimensional_array_from_field_items( $groups, 'tid' );
 }
 
-function get_one_dimensional_array_from_field_items( $field_items, $key ) {
-  foreach ( $field_items as $index => $item ) {
-    $field_items[$index] = $item[$key];
-  }
-  return $field_items;
-}
-
-function get_field_items_from_one_dimensional_array( $items, $key ) {
-  foreach ( $items as $index => $value ) {
-    $items[$index]= array($key => $value );
-  }
-  return $items;
-}
-
 function _group_tags_get_markup_for_tag_links_list($links) {
 
   $markup = '<div class="interest-group-toggle"><ul>';
@@ -197,19 +166,98 @@ function _group_tags_get_markup_for_tag_links_list($links) {
 }
 
 function _group_tags_get_markup_for_add_tag_link($term, $nid) {
-  return l(
-    t('Add to interest group: @term_name',
-      array( '@term_name' => $term->name ) ),
-    url("node/$nid/add-to-interest-group/$term->tid"),
-    array('query' => drupal_get_destination(), 'absolute' => TRUE)
-  );
+
+  $path = "node/$nid/add-to-interest-group/$term->tid";
+
+  // Does the user have access to the relevant path?
+  if ( current_user_has_access($path)) {
+
+    // Return an appropriately labeled link.
+    return l(
+      t('Add to interest group: @term_name',
+        array( '@term_name' => $term->name ) ),
+      $path,
+      array('query' => drupal_get_destination())
+    );
+  }
+  else {
+    return FALSE;
+  }
 }
 
 function _group_tags_get_markup_for_remove_tag_link($term, $nid) {
-  return l(
-    t('Remove from interest group: @term_name',
-      array( '@term_name' => $term->name ) ),
-    url("node/$nid/remove-from-interest-group/$term->tid"),
-    array('query' => drupal_get_destination(), 'absolute' => TRUE)
-  );
+
+  $path = "node/$nid/remove-from-interest-group/$term->tid";
+
+  // Does the user have access to the relevant path?
+  if ( current_user_has_access($path)) {
+
+    // Return an appropriately labeled link.
+    return l(
+      t('Remove from interest group: @term_name',
+        array( '@term_name' => $term->name ) ),
+      $path,
+      array('query' => drupal_get_destination())
+    );
+  }
+  else {
+    return FALSE;
+  }
+}
+
+
+
+////////////
+/// General utility functions.
+/// These should go somewhere else.
+////////////
+
+function current_user_has_access( $path ) {
+  return ($router_item = menu_get_item($path)) && $router_item['access'];
+}
+
+function get_one_dimensional_array_from_field_items( $field_items, $key ) {
+  if ( ! empty( $field_items ) ) {
+    foreach ( $field_items as $index => $item ) {
+      $field_items[$index] = $item[$key];
+    }
+    return $field_items;
+  }
+  else {
+    return array();
+  }
+}
+
+function get_field_items_from_one_dimensional_array( $items, $key ) {
+  if ( ! empty( $items ) ) {
+    foreach ( $items as $index => $value ) {
+      $items[$index]= array($key => $value );
+    }
+    return $items;
+  }
+  else {
+    return array();
+  }
+}
+
+/**
+* Sets the field items
+* Stolen from https://www.drupal.org/node/1500308#comment-6832522
+* @param $entity_type
+* @param $entity
+* @param $field_name
+* @param $items
+* @param $langcode
+*/
+function field_set_items($entity_type, &$entity, $field_name, $items, $langcode = NULL) {
+  if ($langcode) {
+    $lang = $langcode;
+  } else {
+    $field_info = field_info_field($field_name);
+    $lang = $field_info['translatable'] ? entity_language($entity_type, $entity) : LANGUAGE_NONE;
+  }
+  if (empty($entity->{$field_name})) {
+    $entity->{$field_name} = array();
+  }
+  $entity->{$field_name}[$lang] = $items;
 }
