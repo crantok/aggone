@@ -6,6 +6,14 @@
  * on content.
  */
 
+function group_tags_form_imported_article_node_form_alter(&$form, &$form_state, $form_id) {
+  if ( ! user_access( 'administer nodes') ) {
+    $form['field_interest_groups']['#access'] = FALSE;
+    $form['og_group_ref']['#access'] = FALSE;
+  }
+}
+
+
 function group_tags_menu() {
   return array(
 
