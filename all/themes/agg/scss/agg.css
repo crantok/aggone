@@ -1,0 +1,79 @@
+/*
+Error: File to import not found or unreadable: foundation.
+       Load path: /home/justin/www/agg/sites/all/themes/agg/scss
+        on line 15 of /home/justin/www/agg/sites/all/themes/agg/scss/base/_init.scss
+        from line 33 of /home/justin/www/agg/sites/all/themes/agg/scss/agg.scss
+
+10:  * This application file (THEMENAME.scss) is where all the partials are
+11:  * imported.
+12:  *
+13:  * Theme styles are categorized using SMACSS standards. They utilize
+14:  * categorization of styles into various categories. Those categories are the
+15:  * following:
+16:  *
+17:  * - Base: CSS reset/normalize plus HTML element styling.
+18:  * - Layout: Macro arrangement of a web page, including any grid systems.
+19:  * - Component: Dictate minor layout modules or reusable elements.
+20:  * - State: Describe the appearance of a module in various states.
+
+Backtrace:
+/home/justin/www/agg/sites/all/themes/agg/scss/base/_init.scss:15
+/home/justin/www/agg/sites/all/themes/agg/scss/agg.scss:33
+/home/justin/.rvm/gems/ruby-1.9.3-p547@source-tools/gems/sass-3.4.2/lib/sass/tree/import_node.rb:66:in `rescue in import'
+/home/justin/.rvm/gems/ruby-1.9.3-p547@source-tools/gems/sass-3.4.2/lib/sass/tree/import_node.rb:45:in `import'
+/home/justin/.rvm/gems/ruby-1.9.3-p547@source-tools/gems/sass-3.4.2/lib/sass/tree/import_node.rb:28:in `imported_file'
+/home/justin/.rvm/gems/ruby-1.9.3-p547@source-tools/gems/sass-3.4.2/lib/sass/tree/import_node.rb:37:in `css_import?'
+/home/justin/.rvm/gems/ruby-1.9.3-p547@source-tools/gems/sass-3.4.2/lib/sass/tree/visitors/perform.rb:295:in `visit_import'
+/home/justin/.rvm/gems/ruby-1.9.3-p547@source-tools/gems/sass-3.4.2/lib/sass/tree/visitors/base.rb:36:in `visit'
+/home/justin/.rvm/gems/ruby-1.9.3-p547@source-tools/gems/sass-3.4.2/lib/sass/tree/visitors/perform.rb:152:in `block in visit'
+/home/justin/.rvm/gems/ruby-1.9.3-p547@source-tools/gems/sass-3.4.2/lib/sass/stack.rb:79:in `block in with_base'
+/home/justin/.rvm/gems/ruby-1.9.3-p547@source-tools/gems/sass-3.4.2/lib/sass/stack.rb:115:in `with_frame'
+/home/justin/.rvm/gems/ruby-1.9.3-p547@source-tools/gems/sass-3.4.2/lib/sass/stack.rb:79:in `with_base'
+/home/justin/.rvm/gems/ruby-1.9.3-p547@source-tools/gems/sass-3.4.2/lib/sass/tree/visitors/perform.rb:152:in `visit'
+/home/justin/.rvm/gems/ruby-1.9.3-p547@source-tools/gems/sass-3.4.2/lib/sass/tree/visitors/perform.rb:309:in `block (2 levels) in visit_import'
+/home/justin/.rvm/gems/ruby-1.9.3-p547@source-tools/gems/sass-3.4.2/lib/sass/tree/visitors/perform.rb:309:in `map'
+/home/justin/.rvm/gems/ruby-1.9.3-p547@source-tools/gems/sass-3.4.2/lib/sass/tree/visitors/perform.rb:309:in `block in visit_import'
+/home/justin/.rvm/gems/ruby-1.9.3-p547@source-tools/gems/sass-3.4.2/lib/sass/stack.rb:88:in `block in with_import'
+/home/justin/.rvm/gems/ruby-1.9.3-p547@source-tools/gems/sass-3.4.2/lib/sass/stack.rb:115:in `with_frame'
+/home/justin/.rvm/gems/ruby-1.9.3-p547@source-tools/gems/sass-3.4.2/lib/sass/stack.rb:88:in `with_import'
+/home/justin/.rvm/gems/ruby-1.9.3-p547@source-tools/gems/sass-3.4.2/lib/sass/tree/visitors/perform.rb:306:in `visit_import'
+/home/justin/.rvm/gems/ruby-1.9.3-p547@source-tools/gems/sass-3.4.2/lib/sass/tree/visitors/base.rb:36:in `visit'
+/home/justin/.rvm/gems/ruby-1.9.3-p547@source-tools/gems/sass-3.4.2/lib/sass/tree/visitors/perform.rb:152:in `block in visit'
+/home/justin/.rvm/gems/ruby-1.9.3-p547@source-tools/gems/sass-3.4.2/lib/sass/stack.rb:79:in `block in with_base'
+/home/justin/.rvm/gems/ruby-1.9.3-p547@source-tools/gems/sass-3.4.2/lib/sass/stack.rb:115:in `with_frame'
+/home/justin/.rvm/gems/ruby-1.9.3-p547@source-tools/gems/sass-3.4.2/lib/sass/stack.rb:79:in `with_base'
+/home/justin/.rvm/gems/ruby-1.9.3-p547@source-tools/gems/sass-3.4.2/lib/sass/tree/visitors/perform.rb:152:in `visit'
+/home/justin/.rvm/gems/ruby-1.9.3-p547@source-tools/gems/sass-3.4.2/lib/sass/tree/visitors/base.rb:52:in `block in visit_children'
+/home/justin/.rvm/gems/ruby-1.9.3-p547@source-tools/gems/sass-3.4.2/lib/sass/tree/visitors/base.rb:52:in `map'
+/home/justin/.rvm/gems/ruby-1.9.3-p547@source-tools/gems/sass-3.4.2/lib/sass/tree/visitors/base.rb:52:in `visit_children'
+/home/justin/.rvm/gems/ruby-1.9.3-p547@source-tools/gems/sass-3.4.2/lib/sass/tree/visitors/perform.rb:161:in `block in visit_children'
+/home/justin/.rvm/gems/ruby-1.9.3-p547@source-tools/gems/sass-3.4.2/lib/sass/tree/visitors/perform.rb:173:in `with_environment'
+/home/justin/.rvm/gems/ruby-1.9.3-p547@source-tools/gems/sass-3.4.2/lib/sass/tree/visitors/perform.rb:160:in `visit_children'
+/home/justin/.rvm/gems/ruby-1.9.3-p547@source-tools/gems/sass-3.4.2/lib/sass/tree/visitors/base.rb:36:in `block in visit'
+/home/justin/.rvm/gems/ruby-1.9.3-p547@source-tools/gems/sass-3.4.2/lib/sass/tree/visitors/perform.rb:180:in `visit_root'
+/home/justin/.rvm/gems/ruby-1.9.3-p547@source-tools/gems/sass-3.4.2/lib/sass/tree/visitors/base.rb:36:in `visit'
+/home/justin/.rvm/gems/ruby-1.9.3-p547@source-tools/gems/sass-3.4.2/lib/sass/tree/visitors/perform.rb:151:in `visit'
+/home/justin/.rvm/gems/ruby-1.9.3-p547@source-tools/gems/sass-3.4.2/lib/sass/tree/visitors/perform.rb:8:in `visit'
+/home/justin/.rvm/gems/ruby-1.9.3-p547@source-tools/gems/sass-3.4.2/lib/sass/tree/root_node.rb:36:in `css_tree'
+/home/justin/.rvm/gems/ruby-1.9.3-p547@source-tools/gems/sass-3.4.2/lib/sass/tree/root_node.rb:29:in `render_with_sourcemap'
+/home/justin/.rvm/gems/ruby-1.9.3-p547@source-tools/gems/sass-3.4.2/lib/sass/engine.rb:368:in `_render_with_sourcemap'
+/home/justin/.rvm/gems/ruby-1.9.3-p547@source-tools/gems/sass-3.4.2/lib/sass/engine.rb:285:in `render_with_sourcemap'
+/home/justin/.rvm/gems/ruby-1.9.3-p547@source-tools/gems/sass-3.4.2/lib/sass/plugin/compiler.rb:490:in `update_stylesheet'
+/home/justin/.rvm/gems/ruby-1.9.3-p547@source-tools/gems/sass-3.4.2/lib/sass/plugin/compiler.rb:215:in `block in update_stylesheets'
+/home/justin/.rvm/gems/ruby-1.9.3-p547@source-tools/gems/sass-3.4.2/lib/sass/plugin/compiler.rb:209:in `each'
+/home/justin/.rvm/gems/ruby-1.9.3-p547@source-tools/gems/sass-3.4.2/lib/sass/plugin/compiler.rb:209:in `update_stylesheets'
+/home/justin/.rvm/gems/ruby-1.9.3-p547@source-tools/gems/sass-3.4.2/lib/sass/plugin.rb:82:in `update_stylesheets'
+/home/justin/.rvm/gems/ruby-1.9.3-p547@source-tools/gems/sass-3.4.2/lib/sass/exec/sass_scss.rb:329:in `watch_or_update'
+/home/justin/.rvm/gems/ruby-1.9.3-p547@source-tools/gems/sass-3.4.2/lib/sass/exec/sass_scss.rb:50:in `process_result'
+/home/justin/.rvm/gems/ruby-1.9.3-p547@source-tools/gems/sass-3.4.2/lib/sass/exec/base.rb:40:in `parse'
+/home/justin/.rvm/gems/ruby-1.9.3-p547@source-tools/gems/sass-3.4.2/lib/sass/exec/base.rb:19:in `parse!'
+/home/justin/.rvm/gems/ruby-1.9.3-p547@source-tools/gems/sass-3.4.2/bin/sass:13:in `<top (required)>'
+/home/justin/.rvm/gems/ruby-1.9.3-p547@source-tools/bin/sass:23:in `load'
+/home/justin/.rvm/gems/ruby-1.9.3-p547@source-tools/bin/sass:23:in `<main>'
+/home/justin/.rvm/gems/ruby-1.9.3-p547@source-tools/bin/ruby_executable_hooks:15:in `eval'
+/home/justin/.rvm/gems/ruby-1.9.3-p547@source-tools/bin/ruby_executable_hooks:15:in `<main>'
+*/
+body:before {
+  white-space: pre;
+  font-family: monospace;
+  content: "Error: File to import not found or unreadable: foundation.\A        Load path: /home/justin/www/agg/sites/all/themes/agg/scss\A         on line 15 of /home/justin/www/agg/sites/all/themes/agg/scss/base/_init.scss\A         from line 33 of /home/justin/www/agg/sites/all/themes/agg/scss/agg.scss\A \A 10:  * This application file (THEMENAME.scss) is where all the partials are\A 11:  * imported.\A 12:  *\A 13:  * Theme styles are categorized using SMACSS standards. They utilize\A 14:  * categorization of styles into various categories. Those categories are the\A 15:  * following:\A 16:  *\A 17:  * - Base: CSS reset/normalize plus HTML element styling.\A 18:  * - Layout: Macro arrangement of a web page, including any grid systems.\A 19:  * - Component: Dictate minor layout modules or reusable elements.\A 20:  * - State: Describe the appearance of a module in various states."; }
