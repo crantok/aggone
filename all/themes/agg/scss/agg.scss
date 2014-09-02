@@ -67,4 +67,16 @@
 // IE8 Grid Support
 //@import "ie";
 
-.title-area h1, .title-area h1 img { height:100%; }
+
+// Include the foundation icon set
+@import "../foundation-icons/foundation-icons.css";
+
+
+// Home icon in top bar
+.top-bar-section i.fi-home
+{
+    color:white;
+    float:left;
+    padding:0 15px;
+    font-size: 1.5em;
+}

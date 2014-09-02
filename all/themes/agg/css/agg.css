@@ -37,6 +37,7 @@
 /**
  * Correct `block` display not defined in IE 8/9.
  */
+@import url(../foundation-icons/foundation-icons.css);
 /* line 11, ../scss/_normalize.scss */
 article,
 aside,
@@ -7338,7 +7339,10 @@ a.th {
   display: inline-block;
 }
 
-/* line 70, ../scss/agg.scss */
-.title-area h1, .title-area h1 img {
-  height: 100%;
+/* line 76, ../scss/agg.scss */
+.top-bar-section i.fi-home {
+  color: white;
+  float: left;
+  padding: 0 15px;
+  font-size: 1.5em;
 }

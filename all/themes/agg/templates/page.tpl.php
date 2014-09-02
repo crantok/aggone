@@ -10,15 +10,8 @@
       <div class="<?php print $top_bar_classes; ?>">
       <?php endif; ?>
         <nav class="top-bar"<?php print $top_bar_options; ?>>
-          <ul class="title-area">
-            <li class="name">
-              <h1>
-                <img alt="<?php print $site_name; ?>" src="<?php print $directory; ?>/temp-logo.png">
-              </h1>
-            </li>
-            <li class="toggle-topbar menu-icon"><a href="#"><span><?php print $top_bar_menu_text; ?></span></a></li>
-          </ul>
           <section class="top-bar-section">
+            <i class="fi-home" title="<?php print t('Home'); ?>"></i>
             <?php if ($top_bar_main_menu) :?>
               <?php print $top_bar_main_menu; ?>
             <?php endif; ?>
