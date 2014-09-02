@@ -144,12 +144,12 @@
           if (Drupal.coffee.form.hasClass('hide-form') && 
         		  event.altKey === true && 
         		  // 68/206 = d/D, 75 = k. 
-        		  (event.keyCode === 68 || event.keyCode === 206  || event.keyCode === 75)) {
+        		  (event.keyCode === 75)) {
             Drupal.coffee.coffee_show();
             event.preventDefault();
           }
           // Close the form with esc or alt + D.
-          else if (!Drupal.coffee.form.hasClass('hide-form') && (event.keyCode === 27 || (event.altKey === true && (event.keyCode === 68 || event.keyCode === 206)))) {
+          else if (!Drupal.coffee.form.hasClass('hide-form') && (event.keyCode === 27 || (event.altKey === true && (event.keyCode === 75)))) {
             Drupal.coffee.coffee_close();
             event.preventDefault();
           }
