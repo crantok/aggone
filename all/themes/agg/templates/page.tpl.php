@@ -11,7 +11,9 @@
       <?php endif; ?>
         <nav class="top-bar"<?php print $top_bar_options; ?>>
           <section class="top-bar-section">
-            <i class="fi-home" title="<?php print t('Home'); ?>"></i>
+            <a href="<?php print $front_page; ?>">
+              <i class="fi-home" title="<?php print t('Home'); ?>"></i>
+            </a>
             <?php if ($top_bar_main_menu) :?>
               <?php print $top_bar_main_menu; ?>
             <?php endif; ?>
