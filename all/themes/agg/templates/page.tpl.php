@@ -52,7 +52,7 @@
       <div class="banner-first large-6 columns">
         <?php include "$directory/templates/site-name.tpl.php"; ?>
         <?php if ($is_front) : ?>
-          <div id="site-slogan"><?php print $site_slogan; ?></div>
+          <div id="site-slogan"><strong><?php print $site_slogan; ?></strong></div>
         <?php endif ?>
       </div>
 
