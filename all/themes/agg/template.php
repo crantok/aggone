@@ -16,8 +16,18 @@
  * Implements template_preprocess_page
  *
  */
-//function agg_preprocess_page(&$variables) {
-//}
+function agg_preprocess_page(&$vars) {
+
+  // Text entered by admin about the site
+  $vars['site_about_text'] = theme_get_setting( 'site_about_text', NULL );
+
+  // $title is available in page.tpl.php, but 'title' is not available in
+  // variables array here.
+  $title = drupal_get_title();
+
+  // Whether to hide the page title. Edit as needs change.
+  $vars['hide_page_title'] = empty($title) || ( $vars['is_front'] && FALSE );
+}
 
 /**
  * Implements template_preprocess_node

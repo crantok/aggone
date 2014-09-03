@@ -7340,9 +7340,37 @@ a.th {
 }
 
 /* line 76, ../scss/agg.scss */
-.top-bar-section i.fi-home {
+.title-area .fi-home {
   color: white;
-  float: left;
   padding: 0 15px;
+  font-size: 1.5em;
+}
+
+/* line 83, ../scss/agg.scss */
+header {
+  margin-bottom: 1.5em;
+}
+
+/* line 87, ../scss/agg.scss */
+#site-about {
+  margin-top: 2em;
+}
+
+/* line 91, ../scss/agg.scss */
+#site-slogan, #site-about {
+  font-size: 1em;
+  line-height: 1.3em;
+  color: #444;
+}
+
+/* line 98, ../scss/agg.scss */
+#site-name {
+  font-size: 2em;
+  margin: 0.67em 0;
+  line-height: 1.4;
+}
+
+/* line 105, ../scss/agg.scss */
+.node-teaser h2 {
   font-size: 1.5em;
 }

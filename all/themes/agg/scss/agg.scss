@@ -73,10 +73,35 @@
 
 
 // Home icon in top bar
-.top-bar-section i.fi-home
+.title-area .fi-home
 {
     color:white;
-    float:left;
     padding:0 15px;
     font-size: 1.5em;
+}
+
+header {
+    margin-bottom: 1.5em;
+}
+
+#site-about {
+    margin-top: 2em;
+}
+
+#site-slogan, #site-about {
+    font-size: 1em;
+    line-height: 1.3em;
+    color: #444;
+}
+
+// Make sure the site name looks the same regardless of whether it is div or h1
+#site-name {
+    font-size: 2em;
+    margin: 0.67em 0;
+    line-height:1.4;
+}
+
+// Node teasers were taller than site title. Changed that.
+.node-teaser h2 {
+    font-size:1.5em;
 }

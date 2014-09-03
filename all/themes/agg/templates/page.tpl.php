@@ -1,3 +1,18 @@
+<?php
+
+/**
+ * @file
+ * Custom site theme.
+ * Working name: agg
+ * Possible final name: 1st sector success
+ *
+ * Preprocess added variables (see page.tpl.php in Bartik theme for other variables):
+ * - $site_about_text: Brief text about the site. May contain markup.
+ * - $hide_page_title: Boolean: Whether to hide the page title.
+ */
+
+?>
+
 <!--.page -->
 <div role="document" class="page">
 
@@ -10,10 +25,13 @@
       <div class="<?php print $top_bar_classes; ?>">
       <?php endif; ?>
         <nav class="top-bar"<?php print $top_bar_options; ?>>
-          <section class="top-bar-section">
-            <a href="<?php print $front_page; ?>">
+        <ul class="title-area">
+            <li><a href="<?php print $front_page; ?>">
               <i class="fi-home" title="<?php print t('Home'); ?>"></i>
-            </a>
+            </a></li>
+          <li class="toggle-topbar menu-icon"><a href="#"><span><?php print $top_bar_menu_text; ?></span></a></li>
+        </ul>
+          <section class="top-bar-section">
             <?php if ($top_bar_main_menu) :?>
               <?php print $top_bar_main_menu; ?>
             <?php endif; ?>
@@ -28,45 +46,26 @@
       <!--/.top-bar -->
     <?php endif; ?>
 
-    <!-- Title, slogan and menu -->
-    <?php if ($alt_header): ?>
-    <section class="row <?php print $alt_header_classes; ?>">
+    <!-- Site name, slogan and "about" text -->
+    <section class="row l-banner-columns">
 
-      <?php if ($linked_logo): print $linked_logo; endif; ?>
+      <div class="banner-first large-6 columns">
+        <?php include "$directory/templates/site-name.tpl.php"; ?>
+        <?php if ($is_front) : ?>
+          <div id="site-slogan"><?php print $site_slogan; ?></div>
+        <?php endif ?>
+      </div>
 
-      <?php if ($site_name): ?>
-        <?php if ($title): ?>
-          <div id="site-name" class="element-invisible">
-            <strong>
-              <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home"><span><?php print $site_name; ?></span></a>
-            </strong>
-          </div>
-        <?php else: /* Use h1 when the content title is empty */ ?>
-          <h1 id="site-name">
-            <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home"><span><?php print $site_name; ?></span></a>
-          </h1>
-        <?php endif; ?>
-      <?php endif; ?>
-
-      <?php if ($site_slogan): ?>
-        <h2 title="<?php print $site_slogan; ?>" class="site-slogan"><?php print $site_slogan; ?></h2>
-      <?php endif; ?>
-
-      <?php if ($alt_main_menu): ?>
-        <nav id="main-menu" class="navigation" role="navigation">
-          <?php print ($alt_main_menu); ?>
-        </nav> <!-- /#main-menu -->
-      <?php endif; ?>
-
-      <?php if ($alt_secondary_menu): ?>
-        <nav id="secondary-menu" class="navigation" role="navigation">
-          <?php print $alt_secondary_menu; ?>
-        </nav> <!-- /#secondary-menu -->
-      <?php endif; ?>
+      <div class="banner-second large-6 columns">
+        <?php if ($is_front) : ?>
+          <div id="site-about"><?php print $site_about_text; ?></div>
+        <?php else : ?>
+          <div id="site-slogan"><?php print $site_slogan; ?></div>
+        <?php endif ?>
+      </div>
 
     </section>
-    <?php endif; ?>
-    <!-- End title, slogan and menu -->
+    <!-- /Site name, slogan and "about" text -->
 
     <?php if (!empty($page['header'])): ?>
       <!--.l-header-region -->
@@ -140,7 +139,7 @@
 
       <?php if ($breadcrumb): print $breadcrumb; endif; ?>
 
-      <?php if ($title && !$is_front): ?>
+      <?php if (! $hide_page_title): ?>
         <?php print render($title_prefix); ?>
         <h1 id="page-title" class="title"><?php print $title; ?></h1>
         <?php print render($title_suffix); ?>
