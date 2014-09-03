@@ -7356,21 +7356,26 @@ header {
   margin-top: 2em;
 }
 
-/* line 91, ../scss/agg.scss */
+/* line 90, ../scss/agg.scss */
+.banner-second #site-slogan {
+  margin-top: 2.4em;
+}
+
+/* line 95, ../scss/agg.scss */
 #site-slogan, #site-about {
   font-size: 1em;
   line-height: 1.3em;
   color: #444;
 }
 
-/* line 98, ../scss/agg.scss */
+/* line 102, ../scss/agg.scss */
 #site-name {
   font-size: 2em;
   margin: 0.67em 0;
   line-height: 1.4;
 }
 
-/* line 105, ../scss/agg.scss */
+/* line 109, ../scss/agg.scss */
 .node-teaser h2 {
   font-size: 1.5em;
 }

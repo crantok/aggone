@@ -27,6 +27,39 @@ function agg_preprocess_page(&$vars) {
 
   // Whether to hide the page title. Edit as needs change.
   $vars['hide_page_title'] = empty($title) || ( $vars['is_front'] && FALSE );
+
+  // D7 secondary menu seems to be broken.
+  // Create menu with appropriate log in / log out / register links
+  unset($vars['top_bar_secondary_menu']);
+  $vars['top_bar_secondary_menu'] = get_secondary_menu( $vars['logged_in'] );
+}
+
+
+// Make our own secondary menu, similar to the user menu, but less broken.
+function get_secondary_menu( $logged_in ) {
+
+  if ( 'logged_in' ) {
+    $loginout_links =
+      array( array( 'href' => 'user/logout', 'title' => 'Log out' ) );
+  }
+  else {
+    $loginout_links =
+      array(
+	    array( 'href' => 'user', 'title' => 'Log in' ),
+	    array( 'href' => 'user/register', 'title' => 'Register' ),
+	    );
+  }
+
+  return theme( 'links',
+		array('links' => $loginout_links,
+		      'attributes' => array('id'    => 'secondary-menu',
+					    'class' => array('secondary', 'link-list', 'right'),
+					    ),
+		      'heading' => array('text' => t('Secondary menu'),
+					 'level' => 'h2',
+					 'class' => array('element-invisible'),
+					 ),
+		      ));
 }
 
 /**

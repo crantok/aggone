@@ -49,18 +49,18 @@
     <!-- Site name, slogan and "about" text -->
     <section class="row l-banner-columns">
 
-      <div class="banner-first large-6 columns">
+      <div class="banner-first large-5 columns">
         <?php include "$directory/templates/site-name.tpl.php"; ?>
         <?php if ($is_front) : ?>
           <div id="site-slogan"><strong><?php print $site_slogan; ?></strong></div>
         <?php endif ?>
       </div>
 
-      <div class="banner-second large-6 columns">
+      <div class="banner-second large-7 columns">
         <?php if ($is_front) : ?>
           <div id="site-about"><?php print $site_about_text; ?></div>
         <?php else : ?>
-          <div id="site-slogan"><?php print $site_slogan; ?></div>
+          <div id="site-slogan"><strong><?php print $site_slogan; ?></strong></div>
         <?php endif ?>
       </div>
 
