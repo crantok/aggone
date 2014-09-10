@@ -38,6 +38,8 @@ function agg_preprocess_page(&$vars) {
 // Make our own secondary menu, similar to the user menu, but less broken.
 function get_secondary_menu( $logged_in ) {
 
+  dsm(drupal_get_destination());
+
   if ( $logged_in ) {
     $loginout_links =
       array( array( 'href' => 'user/logout', 'title' => 'Log out' ) );
@@ -45,9 +47,18 @@ function get_secondary_menu( $logged_in ) {
   else {
     $loginout_links =
       array(
-	    array( 'href' => 'user', 'title' => 'Log in' ),
-	    array( 'href' => 'user/register', 'title' => 'Register' ),
+        array(
+          'href' => 'user',
+          'title' => 'Log in',
+          'query' => drupal_get_destination(),
+        ),
+        array(
+          'href' => 'user/register',
+          'title' => 'Register',
+          'query' => drupal_get_destination(),
+        ),
 	    );
+    dsm($loginout_links);
   }
 
   return theme( 'links',
