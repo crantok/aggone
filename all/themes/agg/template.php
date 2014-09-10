@@ -31,17 +31,23 @@ function agg_preprocess_page(&$vars) {
   // D7 secondary menu seems to be broken.
   // Create menu with appropriate log in / log out / register links
   unset($vars['top_bar_secondary_menu']);
-  $vars['top_bar_secondary_menu'] = get_secondary_menu( $vars['logged_in'] );
+  $vars['top_bar_secondary_menu'] = get_secondary_menu_themed(
+    get_secondary_menu_links( $vars['logged_in'] ) );
+
+  // While we're at it, let's add a "universal" menu too.
+  // This will be accessible even while logged out.
+  $vars['top_bar_universal_menu'] =
+    get_universal_menu_themed( get_universal_menu_links() );
 }
 
 
 // Make our own secondary menu, similar to the user menu, but less broken.
-function get_secondary_menu( $logged_in ) {
+function get_secondary_menu_links( $logged_in ) {
 
   global $user;
 
   if ( $logged_in ) {
-    $loginout_links =
+    $links =
       array(
         array(
           'href' => "user/$user->uid/edit",
@@ -55,7 +61,7 @@ function get_secondary_menu( $logged_in ) {
       );
   }
   else {
-    $loginout_links =
+    $links =
       array(
         array(
           'href' => 'user',
@@ -69,19 +75,52 @@ function get_secondary_menu( $logged_in ) {
         ),
 	    );
   }
+  return $links;
+}
 
+function get_secondary_menu_themed( $secondary_menu_links ) {
   return theme( 'links',
-		array('links' => $loginout_links,
+		array(
+      'links' => $secondary_menu_links,
       'attributes' => array(
         'id' => 'secondary-menu',
         'class' => array('secondary', 'link-list', 'right'),
       ),
-      'heading' => array(
-        'text' => t('Secondary menu'),
-        'level' => 'h2',
-        'class' => array('element-invisible'),
+    )
+  );
+}
+
+
+function get_universal_menu_links() {
+
+  return array(
+    array(
+      'href' => "node/add/imported-article",
+      'title' => 'Suggest an article',
+      'attributes' => array(
+        'title' => t('What website articles should we know about?')
       ),
-    ));
+    ),
+    array(
+      'href' => 'article-topics',
+      'title' => 'Article topics',
+      'attributes' => array(
+        'title' => t('See what kinds of articles are available')
+      ),
+    ),
+  );
+}
+
+function get_universal_menu_themed( $universal_menu_links ) {
+  return theme( 'links',
+		array(
+      'links' => $universal_menu_links,
+      'attributes' => array(
+        'id' => 'universal-menu',
+        'class' => array('universal-menu', 'left'),
+      ),
+    )
+  );
 }
 
 /**
