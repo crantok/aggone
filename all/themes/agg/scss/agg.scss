@@ -110,8 +110,12 @@ header {
     font-size:1.5em;
 }
 
-.view-article-topics span {
+.view-article-topics span.views-row {
   display: inline-block;
   margin-right: 1em;
   line-height: 1.5em;
+}
+.field-content.vocab {
+  color: #555;
+  font-size: 0.85em;
 }

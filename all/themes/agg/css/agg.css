@@ -7381,8 +7381,14 @@ header {
 }
 
 /* line 113, ../scss/agg.scss */
-.view-article-topics span {
+.view-article-topics span.views-row {
   display: inline-block;
   margin-right: 1em;
   line-height: 1.5em;
+}
+
+/* line 118, ../scss/agg.scss */
+.field-content.vocab {
+  color: #555;
+  font-size: 0.85em;
 }
