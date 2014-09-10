@@ -38,11 +38,21 @@ function agg_preprocess_page(&$vars) {
 // Make our own secondary menu, similar to the user menu, but less broken.
 function get_secondary_menu( $logged_in ) {
 
-  dsm(drupal_get_destination());
+  global $user;
 
   if ( $logged_in ) {
     $loginout_links =
-      array( array( 'href' => 'user/logout', 'title' => 'Log out' ) );
+      array(
+        array(
+          'href' => "user/$user->uid/edit",
+          'title' => 'Settings',
+          'query' => drupal_get_destination(),
+        ),
+        array(
+          'href' => 'user/logout',
+          'title' => 'Log out',
+        ),
+      );
   }
   else {
     $loginout_links =
@@ -58,19 +68,20 @@ function get_secondary_menu( $logged_in ) {
           'query' => drupal_get_destination(),
         ),
 	    );
-    dsm($loginout_links);
   }
 
   return theme( 'links',
 		array('links' => $loginout_links,
-		      'attributes' => array('id'    => 'secondary-menu',
-					    'class' => array('secondary', 'link-list', 'right'),
-					    ),
-		      'heading' => array('text' => t('Secondary menu'),
-					 'level' => 'h2',
-					 'class' => array('element-invisible'),
-					 ),
-		      ));
+      'attributes' => array(
+        'id' => 'secondary-menu',
+        'class' => array('secondary', 'link-list', 'right'),
+      ),
+      'heading' => array(
+        'text' => t('Secondary menu'),
+        'level' => 'h2',
+        'class' => array('element-invisible'),
+      ),
+    ));
 }
 
 /**
