@@ -38,7 +38,7 @@ function agg_preprocess_page(&$vars) {
 // Make our own secondary menu, similar to the user menu, but less broken.
 function get_secondary_menu( $logged_in ) {
 
-  if ( 'logged_in' ) {
+  if ( $logged_in ) {
     $loginout_links =
       array( array( 'href' => 'user/logout', 'title' => 'Log out' ) );
   }
