@@ -41,7 +41,7 @@
             <?php if ($top_bar_secondary_menu) :?>
               <?php print $top_bar_secondary_menu; ?>
             <?php endif; ?>
-	    <ul id="search-block-form" class="block-search-form right">
+	    <ul class="block-search-form right">
               <li>
                 <?php print render($search_form); ?>
               </li>
