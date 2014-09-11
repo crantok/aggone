@@ -1,0 +1,44 @@
+<?php
+
+/**
+ * @file
+ * Any tweaks required to group membership
+ */
+
+/**
+ * Implements hook_taxonomy_term_view()
+ */
+function group_membership_taxonomy_term_view($term, $view_mode, $langcode) {
+  global $user;
+
+  // Is user logged out?
+  if ( $user->uid == 0 ) {
+    $term->content['group_group']['#access'] = FALSE;
+  }
+  // Is term an OG group?
+  elseif ( ! empty( $term->content['group_group'] ) ) {
+
+    // Is user a group member?
+    if ( ends_with( $term->content['group_group'][0]['#href'], 'unsubscribe' ) ) {
+      $term->content['group_group'][0]['#title'] = t(
+        'Remove yourself from @group_name editorial team',
+        array( '@group_name' => $term->name )
+      );
+    }
+    else {
+      $term->content['group_group'][0]['#title'] = t(
+        'Ask to join @group_name editorial team',
+        array( '@group_name' => $term->name )
+      );
+    }
+  }
+}
+
+/**
+ * Does string end with given substring?
+ * Stolen from: http://stackoverflow.com/a/10473026
+ */
+function ends_with($haystack, $needle)
+{
+    return $needle === "" || substr($haystack, -strlen($needle)) === $needle;
+}
