@@ -38,6 +38,8 @@ function agg_preprocess_page(&$vars) {
   // This will be accessible even while logged out.
   $vars['top_bar_universal_menu'] =
     get_universal_menu_themed( get_universal_menu_links() );
+
+  $vars['search_form'] = drupal_get_form( 'search_block_form' );
 }
 
 

@@ -7353,42 +7353,148 @@ header {
 
 /* line 87, ../scss/agg.scss */
 #site-about {
-  margin-top: 2em;
+  margin-top: 0.2em;
 }
 
 /* line 90, ../scss/agg.scss */
-.banner-second #site-slogan {
-  margin-top: 2.4em;
+.banner-first #site-slogan {
+  margin-top: 1em;
 }
 
-/* line 95, ../scss/agg.scss */
+/* line 93, ../scss/agg.scss */
+.banner-second #site-slogan {
+  margin-top: 0.675em;
+}
+
+/* line 96, ../scss/agg.scss */
+section.l-banner-columns {
+  margin-bottom: 1em;
+}
+
+/* line 100, ../scss/agg.scss */
 #site-slogan, #site-about {
   font-size: 1em;
   line-height: 1.3em;
   color: #444;
 }
 
-/* line 102, ../scss/agg.scss */
+/* line 107, ../scss/agg.scss */
 #site-name {
   font-size: 2em;
-  margin: 0.67em 0;
-  line-height: 1.4;
+  /* margin: 0.67em 0; */
+  /* line-height:1.4; */
 }
 
-/* line 109, ../scss/agg.scss */
+/* line 114, ../scss/agg.scss */
 .node-teaser h2 {
   font-size: 1.5em;
 }
 
-/* line 113, ../scss/agg.scss */
+/* line 118, ../scss/agg.scss */
 .view-article-topics span.views-row {
   display: inline-block;
   margin-right: 1em;
   line-height: 1.5em;
 }
 
-/* line 118, ../scss/agg.scss */
+/* line 123, ../scss/agg.scss */
 .field-content.vocab {
   color: #555;
   font-size: 0.85em;
+}
+
+/* --------------- Search Results ----------------
+ol.search-results {
+  padding-left: 0;
+}
+.search-results li {
+  border-bottom: 1px solid #d3d7d9;
+  padding-bottom: 0.4285em;
+  margin-bottom: 0.5em;
+}
+.search-results li:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+  margin-bottom: 1em;
+}
+.search-results .search-snippet-info {
+  padding-left: 0;
+}
+*/
+/* --------------- Search Form ---------------- */
+/* line 149, ../scss/agg.scss */
+.block-search-form {
+  padding-bottom: 7px;
+}
+
+/* line 152, ../scss/agg.scss */
+.block-search-form .content {
+  margin-top: 0;
+}
+
+/* line 155, ../scss/agg.scss */
+#search-form input#edit-keys,
+.block-search-form .form-item-search-block-form input {
+  float: left;
+  /* LTR */
+  font-size: 1em;
+  height: 25px;
+  margin-right: 5px;
+  width: 9em;
+}
+
+/* line 163, ../scss/agg.scss */
+#search-block-form button.form-submit,
+#search-form button.form-submit {
+  margin-left: 0;
+  margin-right: 0;
+  height: 25px;
+  width: 34px;
+  padding: 0;
+  cursor: pointer;
+  text-indent: -9999px;
+  border-color: #e4e4e4 #d2d2d2 #b4b4b4;
+  background: url(../images/search-button.png) no-repeat center top;
+  overflow: hidden;
+  border-radius: 15px;
+  border-style: solid;
+  border-width: 1px;
+}
+
+/* line 179, ../scss/agg.scss */
+#search-block-form button.form-submit:hover,
+#search-block-form button.form-submit:focus,
+#search-form button.form-submit:hover,
+#search-form button.form-submit:focus {
+  background-position: center bottom;
+}
+
+/* line 185, ../scss/agg.scss */
+#search-form .form-item-keys label {
+  display: block;
+}
+
+/* line 189, ../scss/agg.scss */
+.top-bar-section .block-search-form button {
+  margin: 8px 0 0 0;
+}
+
+/* line 192, ../scss/agg.scss */
+.expanded .top-bar-section .block-search-form button {
+  margin: 0;
+}
+
+/* line 195, ../scss/agg.scss */
+.top-bar-section .block-search-form form {
+  margin: 2px 0 0 0;
+}
+
+/* line 198, ../scss/agg.scss */
+.expanded .top-bar-section .block-search-form form {
+  margin: 0 0 0 15px;
+}
+
+/* line 201, ../scss/agg.scss */
+.expanded .top-bar-section .block-search-form input {
+  padding: 0 10px;
 }

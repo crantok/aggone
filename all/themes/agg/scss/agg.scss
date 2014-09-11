@@ -85,12 +85,17 @@ header {
 }
 
 #site-about {
-    margin-top: 2em;
+    margin-top: 0.2em;
+}
+.banner-first #site-slogan {
+    margin-top: 1em;
 }
 .banner-second #site-slogan {
-    margin-top: 2.4em;
+    margin-top: 0.675em;
 }
-
+section.l-banner-columns {
+margin-bottom: 1em;
+}
 
 #site-slogan, #site-about {
     font-size: 1em;
@@ -101,8 +106,8 @@ header {
 // Make sure the site name looks the same regardless of whether it is div or h1
 #site-name {
     font-size: 2em;
-    margin: 0.67em 0;
-    line-height:1.4;
+    /* margin: 0.67em 0; */
+    /* line-height:1.4; */
 }
 
 // Node teasers were taller than site title. Changed that.
@@ -118,4 +123,81 @@ header {
 .field-content.vocab {
   color: #555;
   font-size: 0.85em;
+}
+
+/* --------------- Search Results ----------------
+ol.search-results {
+  padding-left: 0;
+}
+.search-results li {
+  border-bottom: 1px solid #d3d7d9;
+  padding-bottom: 0.4285em;
+  margin-bottom: 0.5em;
+}
+.search-results li:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+  margin-bottom: 1em;
+}
+.search-results .search-snippet-info {
+  padding-left: 0;
+}
+*/
+
+/* --------------- Search Form ---------------- */
+
+.block-search-form {
+  padding-bottom: 7px;
+}
+.block-search-form .content {
+  margin-top: 0;
+}
+#search-form input#edit-keys,
+.block-search-form .form-item-search-block-form input {
+  float: left; /* LTR */
+  font-size: 1em;
+  height: 25px;
+  margin-right: 5px;
+  width: 9em;
+}
+#search-block-form button.form-submit,
+#search-form button.form-submit {
+  margin-left: 0;
+  margin-right: 0;
+  height: 25px;
+  width: 34px;
+  padding: 0;
+  cursor: pointer;
+  text-indent: -9999px;
+  border-color: #e4e4e4 #d2d2d2 #b4b4b4;
+  background: url(../images/search-button.png) no-repeat center top;
+  overflow: hidden;
+  border-radius: 15px;
+  border-style: solid;
+  border-width: 1px;
+}
+#search-block-form button.form-submit:hover,
+#search-block-form button.form-submit:focus,
+#search-form button.form-submit:hover,
+#search-form button.form-submit:focus {
+  background-position: center bottom;
+}
+#search-form .form-item-keys label {
+  display: block;
+}
+
+.top-bar-section .block-search-form button {
+    margin: 8px 0 0 0;
+}
+.expanded .top-bar-section .block-search-form button {
+    margin: 0;
+}
+.top-bar-section .block-search-form form {
+    margin: 2px 0 0 0;
+}
+.expanded .top-bar-section .block-search-form form {
+    margin: 0 0 0 15px;
+}
+.expanded .top-bar-section .block-search-form input {
+    padding: 0 10px;
 }

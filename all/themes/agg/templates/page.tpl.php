@@ -41,6 +41,11 @@
             <?php if ($top_bar_secondary_menu) :?>
               <?php print $top_bar_secondary_menu; ?>
             <?php endif; ?>
+	    <ul id="search-block-form" class="block-search-form right">
+              <li>
+                <?php print render($search_form); ?>
+              </li>
+	    </div>
           </section>
         </nav>
       <?php if ($top_bar_classes): ?>
@@ -52,14 +57,22 @@
     <!-- Site name, slogan and "about" text -->
     <section class="row l-banner-columns">
 
-      <div class="banner-first large-5 columns">
-        <?php include "$directory/templates/site-name.tpl.php"; ?>
+      <div class="banner-first small-12 medium-6 large-4 columns">
+
+        <div id="site-name">
+          <strong>
+	    <?php // Hard coding the site name because we want markup in it. ?>
+	    <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home"><span>1<sup>st</sup> Sector Success</span></a>
+          </strong>
+        </div>
+
         <?php if ($is_front) : ?>
           <div id="site-slogan"><strong><?php print $site_slogan; ?></strong></div>
         <?php endif ?>
+
       </div>
 
-      <div class="banner-second large-7 columns">
+      <div class="banner-second small-12 medium-6 large-8 columns">
         <?php if ($is_front) : ?>
           <div id="site-about"><?php print $site_about_text; ?></div>
         <?php else : ?>
@@ -79,23 +92,6 @@
       </section>
       <!--/.l-header-region -->
     <?php endif; ?>
-
-  <?php if (!empty($page['header_firstcolumn']) || !empty($page['header_secondcolumn']) ): ?>
-    <!--.header-columns -->
-    <section class="row l-header-columns">
-      <?php if (!empty($page['header_firstcolumn'])): ?>
-        <div class="header-first large-6 columns">
-          <?php print render($page['header_firstcolumn']); ?>
-        </div>
-      <?php endif; ?>
-      <?php if (!empty($page['header_secondcolumn'])): ?>
-        <div class="header-second large-6 columns">
-          <?php print render($page['header_secondcolumn']); ?>
-        </div>
-      <?php endif; ?>
-    </section>
-    <!--/.header-columns-->
-  <?php endif; ?>
 
   </header>
   <!--/.l-header -->
