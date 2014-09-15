@@ -7498,3 +7498,54 @@ ol.search-results {
 .expanded .top-bar-section .block-search-form input {
   padding: 0 10px;
 }
+
+/* line 205, ../scss/agg.scss */
+.node-imported-article.node-teaser {
+  margin: 40px 0 0 0;
+}
+
+/* line 208, ../scss/agg.scss */
+.node-imported-article .extended-links {
+  /* border-style: solid; */
+  /* border-color: grey; */
+  /* border-width: 0 0 1px 0; */
+  /* border-width: 1px; */
+  /* vertical-align: top; */
+}
+
+/* line 215, ../scss/agg.scss */
+.node-imported-article.view-mode-full .extended-links {
+  margin: 20px 0 25px 0;
+}
+
+/* line 218, ../scss/agg.scss */
+.node-imported-article .extended-links ul {
+  padding-left: 30px;
+  margin: 0;
+}
+
+/* line 222, ../scss/agg.scss */
+.node-imported-article #comments h2 {
+  font-size: 1.5em;
+}
+
+/* line 226, ../scss/agg.scss */
+.field-type-taxonomy-term-reference h2 {
+  font-size: 1em;
+  margin: 0;
+  display: inline;
+  margin-right: 20px;
+}
+
+/* line 232, ../scss/agg.scss */
+.field-type-taxonomy-term-reference ul {
+  margin: 0;
+  display: inline;
+}
+
+/* line 236, ../scss/agg.scss */
+.field-type-taxonomy-term-reference ul li {
+  list-style: none;
+  display: inline;
+  margin-right: 20px;
+}

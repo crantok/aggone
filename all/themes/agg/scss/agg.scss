@@ -201,3 +201,40 @@ ol.search-results {
 .expanded .top-bar-section .block-search-form input {
     padding: 0 10px;
 }
+
+.node-imported-article.node-teaser {
+    margin: 40px 0 0 0;
+}
+.node-imported-article .extended-links {
+    /* border-style: solid; */
+    /* border-color: grey; */
+    /* border-width: 0 0 1px 0; */
+    /* border-width: 1px; */
+    /* vertical-align: top; */
+}
+.node-imported-article.view-mode-full .extended-links {
+    margin: 20px 0 25px 0;
+}
+.node-imported-article .extended-links ul {
+    padding-left: 30px;
+    margin: 0;
+}
+.node-imported-article #comments h2 {
+    font-size: 1.5em;
+}
+
+.field-type-taxonomy-term-reference h2 {
+    font-size: 1em;
+    margin: 0;
+    display: inline;
+    margin-right: 20px;
+}
+.field-type-taxonomy-term-reference ul {
+    margin: 0;
+    display: inline;
+}
+.field-type-taxonomy-term-reference ul li {
+    list-style: none;
+    display: inline;
+    margin-right: 20px;
+}

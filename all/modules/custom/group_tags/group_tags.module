@@ -106,39 +106,98 @@ function _group_terms_goto( $node ) {
 
 
 /**
- *
+ * Implements hook_node_view()
  */
 function group_tags_node_view($node, $view_mode, $langcode) {
 
-  // TO DO : Change to using a theme function or template!!!
-  $node->content['interest_groups_toggle'] = array(
-    '#markup' => _group_tags_get_markup_for_tag_links_node_element($node),
-    '#weight' => 100,
-  );
+  if ( $node->type == 'imported_article' ) {
+    // Rename links area of node content before Flags module adds flag links.
+    $node->content['node_links'] = $node->content['links'];
+    unset( $node->content['links'] );
+  }
 }
 
-function _group_tags_get_markup_for_tag_links_node_element($node) {
-  $users_groups =
+/**
+ * Implements hook_entity_view()
+ *
+ * For a node:
+ * - Wrap lists of different kinds of node-related links within a container.
+ * - Add classes for styling.
+ */
+function group_tags_entity_view($entity, $entity_type, $view_mode, $langcode) {
+
+  if ( $entity_type == 'node' && $entity->type == 'imported_article' ) {
+    $node = $entity;
+
+    $node->content['extended_links'] = array(
+      '#type' => 'container',
+      '#attributes' => array( 'class' => array( 'extended-links', 'row' ) ),
+      '#weight' => 100,
+
+      // Wrap the main node links
+      'node_links' => $node->content['node_links'],
+
+      // Wrap the Flag toggle links ( added in flag_entity_view() )
+      'flag_toggle' => $node->content['links'],
+
+      // Add our own interest-group toggle links.
+      'interest_groups_toggle' => array(
+        '#theme' => 'links',
+        '#links' => _group_tags_get_tag_links($node),
+      ),
+    );
+
+    unset( $node->content['node_links'] );
+    unset( $node->content['links'] );
+
+    $node->content['extended_links']['node_links']['#attributes']['class'][]
+      = 'node-links';
+    $node->content['extended_links']['node_links']['#attributes']['class'][]
+      = 'columns';
+    $node->content['extended_links']['node_links']['#attributes']['class'][]
+      = 'large-3';
+
+    $node->content['extended_links']['flag_toggle']['flag']['#attributes']['class'][]
+      = 'flag-toggle';
+    $node->content['extended_links']['flag_toggle']['flag']['#attributes']['class'][]
+      = 'columns';
+    $node->content['extended_links']['flag_toggle']['flag']['#attributes']['class'][]
+      = 'large-4';
+
+    $node->content['extended_links']['interest_groups_toggle']['#attributes']['class'][]
+      = 'columns';
+    $node->content['extended_links']['interest_groups_toggle']['#attributes']['class'][]
+      = 'large-5';
+  }
+}
+
+function _group_tags_get_tag_links($node) {
+  $groups_of_user =
     _group_tags_get_users_taxonomy_groups( array('interest_group') );
-  $nodes_group_ids = _group_tags_get_nodes_interest_group_ids($node);
+  $group_ids_of_node = _group_tags_get_nodes_interest_group_ids( $node );
 
   $links = array();
-  foreach ($users_groups as $id => $group) {
-    if ( in_array( $id, $nodes_group_ids ) ) {
-      $links[] =
-        _group_tags_get_markup_for_remove_tag_link( $group, $node->nid );
+  foreach ($groups_of_user as $tid => $term) {
+
+    // Is the current node posted tagged with the current interest group?
+    if ( in_array( $tid, $group_ids_of_node ) ) {
+
+      $path = "node/$node->nid/remove-from-interest-group/$tid";
+      if ( current_user_has_access($path)) {
+        $links[] = _group_tags_get_addition_link( $path, $term );
+      }
     }
-    else {
-      $links[] =
-        _group_tags_get_markup_for_add_tag_link( $group, $node->nid );
+    else { // The current node is NOT tagged with the cuirrent interest group.
+
+      $path = "node/$node->nid/add-to-interest-group/$tid";
+
+      if ( current_user_has_access($path)) {
+        $links[] = _group_tags_get_removal_link( $path, $term );
+      }
     }
   }
 
-  $links = array_filter( $links );
-
-  if ( ! empty( $links ) ) {
-    return _group_tags_get_markup_for_tag_links_list($links);
-  }
+  return $links;
 }
 
 function _group_tags_get_users_taxonomy_groups( $vocabularies, $user=NULL) {
@@ -163,54 +222,20 @@ function _group_tags_get_nodes_interest_group_ids($node) {
   return get_one_dimensional_array_from_field_items( $groups, 'tid' );
 }
 
-function _group_tags_get_markup_for_tag_links_list($links) {
-
-  $markup = '<div class="interest-group-toggle"><ul>';
-  foreach ( $links as $link ) {
-    $markup .= '<li>' . $link . '</li>';
-  }
-  $markup .= '</ul></div>';
-  return $markup;
+function _group_tags_get_addition_link( $path, $term ) {
+  return array(
+    'href' => $path,
+    'title' => t('Remove from interest group: @term_name',
+             array( '@term_name' => $term->name ) ),
+  );
 }
 
-function _group_tags_get_markup_for_add_tag_link($term, $nid) {
-
-  $path = "node/$nid/add-to-interest-group/$term->tid";
-
-  // Does the user have access to the relevant path?
-  if ( current_user_has_access($path)) {
-
-    // Return an appropriately labeled link.
-    return l(
-      t('Add to interest group: @term_name',
-        array( '@term_name' => $term->name ) ),
-      $path,
-      array('query' => drupal_get_destination())
-    );
-  }
-  else {
-    return FALSE;
-  }
-}
-
-function _group_tags_get_markup_for_remove_tag_link($term, $nid) {
-
-  $path = "node/$nid/remove-from-interest-group/$term->tid";
-
-  // Does the user have access to the relevant path?
-  if ( current_user_has_access($path)) {
-
-    // Return an appropriately labeled link.
-    return l(
-      t('Remove from interest group: @term_name',
-        array( '@term_name' => $term->name ) ),
-      $path,
-      array('query' => drupal_get_destination())
-    );
-  }
-  else {
-    return FALSE;
-  }
+function _group_tags_get_removal_link( $path, $term ) {
+  return array(
+    'href' => $path,
+    'title' => t('Add to interest group: @term_name',
+             array( '@term_name' => $term->name ) ),
+  );
 }
 
 
