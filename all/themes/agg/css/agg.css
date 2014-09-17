@@ -7549,3 +7549,9 @@ ol.search-results {
   display: inline;
   margin-right: 20px;
 }
+
+/* line 242, ../scss/agg.scss */
+.button-group .active a {
+  background-color: #cacaea;
+  border-color: #99f;
+}
