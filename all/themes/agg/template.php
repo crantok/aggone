@@ -40,6 +40,11 @@ function agg_preprocess_page(&$vars) {
     get_universal_menu_themed( get_universal_menu_links() );
 
   $vars['search_form'] = drupal_get_form( 'search_block_form' );
+
+  // Didn't work!?! Do breadcrumbs get added later?
+  //if ( $vars['is_front'] ) {
+  //  unset( $vars['breadcrumb'] );
+  //}
 }
 
 
