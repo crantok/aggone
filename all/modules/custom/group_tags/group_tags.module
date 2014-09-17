@@ -133,18 +133,23 @@ function group_tags_entity_view($entity, $entity_type, $view_mode, $langcode) {
       '#type' => 'container',
       '#attributes' => array( 'class' => array( 'extended-links', 'row' ) ),
       '#weight' => 100,
+    );
 
+    if ( isset( $node->content['node_links'] ) ) {
       // Wrap the main node links
-      'node_links' => $node->content['node_links'],
+      $node->content['extended_links']['node_links'] =
+        $node->content['node_links'];
+    }
 
+    if ( isset( $node->content['links'] ) ) {
       // Wrap the Flag toggle links ( added in flag_entity_view() )
-      'flag_toggle' => $node->content['links'],
+      $node->content['extended_links']['flag_toggle'] = $node->content['links'];
+    }
 
-      // Add our own interest-group toggle links.
-      'interest_groups_toggle' => array(
-        '#theme' => 'links',
-        '#links' => _group_tags_get_tag_links($node),
-      ),
+    // Add our own interest-group toggle links.
+    $node->content['extended_links']['interest_groups_toggle'] = array(
+      '#theme' => 'links',
+      '#links' => _group_tags_get_tag_links($node),
     );
 
     unset( $node->content['node_links'] );
