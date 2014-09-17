@@ -7555,3 +7555,8 @@ ol.search-results {
   background-color: #cacaea;
   border-color: #99f;
 }
+
+/* line 247, ../scss/agg.scss */
+.node-form textarea {
+  height: 300px;
+}
