@@ -7560,3 +7560,9 @@ ol.search-results {
 .node-form textarea {
   height: 300px;
 }
+
+/* line 251, ../scss/agg.scss */
+.toboggan-unified #login-links a {
+  display: inline-block;
+  line-height: 30px;
+}
