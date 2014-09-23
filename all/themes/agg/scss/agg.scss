@@ -226,7 +226,6 @@ ol.search-results {
 .field-type-taxonomy-term-reference h2 {
     font-size: 1em;
     margin: 0;
-    display: inline;
     margin-right: 20px;
 }
 .field-type-taxonomy-term-reference ul {
@@ -251,4 +250,16 @@ ol.search-results {
 .toboggan-unified #login-links a {
     display: inline-block;
     line-height: 30px;
+}
+
+.field,
+.view-owning-feed {
+    margin: 9px 0;
+}
+.field-type-taxonomy-term-reference {
+  margin: 0;
+}
+
+.field-label-above .field-label {
+    margin-bottom: 3px;
 }

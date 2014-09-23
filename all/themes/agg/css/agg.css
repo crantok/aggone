@@ -7533,36 +7533,51 @@ ol.search-results {
 .field-type-taxonomy-term-reference h2 {
   font-size: 1em;
   margin: 0;
-  display: inline;
   margin-right: 20px;
 }
 
-/* line 232, ../scss/agg.scss */
+/* line 231, ../scss/agg.scss */
 .field-type-taxonomy-term-reference ul {
   margin: 0;
   display: inline;
 }
 
-/* line 236, ../scss/agg.scss */
+/* line 235, ../scss/agg.scss */
 .field-type-taxonomy-term-reference ul li {
   list-style: none;
   display: inline;
   margin-right: 20px;
 }
 
-/* line 242, ../scss/agg.scss */
+/* line 241, ../scss/agg.scss */
 .button-group .active a {
   background-color: #cacaea;
   border-color: #99f;
 }
 
-/* line 247, ../scss/agg.scss */
+/* line 246, ../scss/agg.scss */
 .node-form textarea {
   height: 300px;
 }
 
-/* line 251, ../scss/agg.scss */
+/* line 250, ../scss/agg.scss */
 .toboggan-unified #login-links a {
   display: inline-block;
   line-height: 30px;
+}
+
+/* line 255, ../scss/agg.scss */
+.field,
+.view-owning-feed {
+  margin: 9px 0;
+}
+
+/* line 259, ../scss/agg.scss */
+.field-type-taxonomy-term-reference {
+  margin: 0;
+}
+
+/* line 263, ../scss/agg.scss */
+.field-label-above .field-label {
+  margin-bottom: 3px;
 }
