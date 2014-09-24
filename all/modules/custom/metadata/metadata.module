@@ -44,7 +44,8 @@ function _metadata_hide_imported_article_metadata( &$vars ) {
 
   // If possible, make a composite field that combines owning feed and original
   // article's URL.
-  if ( isset( $vars['content']['owning_feed_entity_view_1'] ) ) {
+  if ( isset( $vars['content']['owning_feed_entity_view_1'] )  &&
+    isset( $vars['content']['field_url'] ) ) {
 
     // Clone the url field and modify the copy.
     $vars['content']['article_source'] = $vars['content']['field_url'];
@@ -55,10 +56,13 @@ function _metadata_hide_imported_article_metadata( &$vars ) {
     $vars['content']['article_source'][0]['#element']['title'] =
       _metadata_get_source_name( $vars );
 
-    // Now hide the fields whose content we combined.
+
+    // Only hide the link to the original article if we have exposed it in our
+    // composite field...
     $vars['content']['field_url']['#access'] = FALSE;
-    $vars['content']['owning_feed_entity_view_1']['#access'] = FALSE;
   }
+  // ...but always hide the link to the import source.
+  $vars['content']['owning_feed_entity_view_1']['#access'] = FALSE;
 
   // Hide the original author field and the "submitted by" info.
   $vars['content']['field_author']['#access'] = FALSE;
