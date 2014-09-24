@@ -1,0 +1,85 @@
+<?php
+
+/**
+ * @file
+ * Isolated modifications that do not rate their own module.
+ */
+
+/**
+ * Implements hook_permission()
+ */
+function agg_mods_permission() {
+  return array(
+    'view imported_article metadata' => array(
+      'title' => t('View imported-article metadata'),
+    ),
+  );
+}
+
+/**
+ * Implements hook_preprocess_node()
+ *
+ * Not using hook_node_view() or hook_node_view_alter() because the owning-feed
+ * view has not been added by then.
+ */
+function agg_mods_preprocess_node( &$vars ) {
+
+  if ( $vars['type'] == 'imported_article'  &&
+    ! user_access( 'view imported_article metadata' ) ) {
+    _agg_mods_hide_imported_article_metadata( $vars );
+  }
+}
+
+/**
+ * Hide and/or modify the metadata of an imported_article.
+ */
+function _agg_mods_hide_imported_article_metadata( &$vars ) {
+
+  // If possible, make a composite field that combines owning feed and original
+  // article's URL.
+  if ( isset( $vars['content']['owning_feed_entity_view_1'] ) ) {
+
+    // Clone the url field and modify the copy.
+    $vars['content']['article_source'] = $vars['content']['field_url'];
+    $vars['content']['article_source']['#title'] =
+      t('Originally published at');
+    $vars['content']['article_source']['#field_name'] =
+      'source_url_modified';
+    $vars['content']['article_source'][0]['#element']['title'] =
+      _agg_mods_get_source_name( $vars );
+
+    // Now hide the fields whose content we combined.
+    $vars['content']['field_url']['#access'] = FALSE;
+    $vars['content']['owning_feed_entity_view_1']['#access'] = FALSE;
+  }
+
+  // Hide the original author field and the "submitted by" info.
+  $vars['content']['field_author']['#access'] = FALSE;
+  $vars['display_submitted'] = FALSE;
+
+  // Hide any OpenCalais taxonomy fields.
+  foreach ( $vars['content'] as $field_name => $field ) {
+    if ( strpos( $field_name, 'opencalais_' ) === 0 ) {
+      $vars['content'][$field_name]['#access'] = FALSE;
+    }
+  }
+}
+
+/**
+ * Get the plain text name of the owning feed of an article.
+ *
+ * FRAGILE: Assumes form of nested associative array as well as the markup of
+ * the view.
+ */
+function _agg_mods_get_source_name( $vars ) {
+  $html_obj =
+    str_get_html( $vars['content']['owning_feed_entity_view_1']['#markup'] );
+
+  $text = $html_obj->find('.view-content a')[0]->innertext;
+
+  // Release resources to avoid memory leak in some versions.
+  $html_obj->clear();
+  unset($html_obj);
+
+  return $text;
+}

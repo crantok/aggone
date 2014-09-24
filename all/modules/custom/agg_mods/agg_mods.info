@@ -1,0 +1,3 @@
+name = Agg mods
+description = Isolated modifications that do not rate their own module.
+core = 7.x

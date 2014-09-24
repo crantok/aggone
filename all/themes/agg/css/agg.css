@@ -7403,36 +7403,18 @@ section.l-banner-columns {
   font-size: 0.85em;
 }
 
-/* --------------- Search Results ----------------
-ol.search-results {
-  padding-left: 0;
-}
-.search-results li {
-  border-bottom: 1px solid #d3d7d9;
-  padding-bottom: 0.4285em;
-  margin-bottom: 0.5em;
-}
-.search-results li:last-child {
-  border-bottom: none;
-  padding-bottom: 0;
-  margin-bottom: 1em;
-}
-.search-results .search-snippet-info {
-  padding-left: 0;
-}
-*/
 /* --------------- Search Form ---------------- */
-/* line 149, ../scss/agg.scss */
+/* line 129, ../scss/agg.scss */
 .block-search-form {
   padding-bottom: 7px;
 }
 
-/* line 152, ../scss/agg.scss */
+/* line 132, ../scss/agg.scss */
 .block-search-form .content {
   margin-top: 0;
 }
 
-/* line 155, ../scss/agg.scss */
+/* line 135, ../scss/agg.scss */
 #search-form input#edit-keys,
 .block-search-form .form-item-search-block-form input {
   float: left;
@@ -7443,7 +7425,7 @@ ol.search-results {
   width: 9em;
 }
 
-/* line 163, ../scss/agg.scss */
+/* line 143, ../scss/agg.scss */
 #search-block-form button.form-submit,
 #search-form button.form-submit {
   margin-left: 0;
@@ -7461,7 +7443,7 @@ ol.search-results {
   border-width: 1px;
 }
 
-/* line 179, ../scss/agg.scss */
+/* line 159, ../scss/agg.scss */
 #search-block-form button.form-submit:hover,
 #search-block-form button.form-submit:focus,
 #search-form button.form-submit:hover,
@@ -7469,42 +7451,43 @@ ol.search-results {
   background-position: center bottom;
 }
 
-/* line 185, ../scss/agg.scss */
+/* line 165, ../scss/agg.scss */
 #search-form .form-item-keys label {
   display: block;
 }
 
-/* line 189, ../scss/agg.scss */
+/* ------------- / Search Form ---------------- */
+/* line 171, ../scss/agg.scss */
 .top-bar-section .block-search-form button {
   margin: 8px 0 0 0;
 }
 
-/* line 192, ../scss/agg.scss */
+/* line 174, ../scss/agg.scss */
 .expanded .top-bar-section .block-search-form button {
   margin: 0;
 }
 
-/* line 195, ../scss/agg.scss */
+/* line 177, ../scss/agg.scss */
 .top-bar-section .block-search-form form {
   margin: 2px 20px 0 0;
 }
 
-/* line 198, ../scss/agg.scss */
+/* line 180, ../scss/agg.scss */
 .expanded .top-bar-section .block-search-form form {
   margin: 0 0 0 15px;
 }
 
-/* line 201, ../scss/agg.scss */
+/* line 183, ../scss/agg.scss */
 .expanded .top-bar-section .block-search-form input {
   padding: 0 10px;
 }
 
-/* line 205, ../scss/agg.scss */
+/* line 187, ../scss/agg.scss */
 .node-imported-article.node-teaser {
   margin: 40px 0 0 0;
 }
 
-/* line 208, ../scss/agg.scss */
+/* line 190, ../scss/agg.scss */
 .node-imported-article .extended-links {
   /* border-style: solid; */
   /* border-color: grey; */
@@ -7513,71 +7496,76 @@ ol.search-results {
   /* vertical-align: top; */
 }
 
-/* line 215, ../scss/agg.scss */
+/* line 197, ../scss/agg.scss */
 .node-imported-article.view-mode-full .extended-links {
   margin: 20px 0 25px 0;
 }
 
-/* line 218, ../scss/agg.scss */
+/* line 200, ../scss/agg.scss */
 .node-imported-article .extended-links ul {
   padding-left: 30px;
   margin: 0;
 }
 
-/* line 222, ../scss/agg.scss */
+/* line 204, ../scss/agg.scss */
 .node-imported-article #comments h2 {
   font-size: 1.5em;
 }
 
-/* line 226, ../scss/agg.scss */
+/* line 208, ../scss/agg.scss */
 .field-type-taxonomy-term-reference h2 {
   font-size: 1em;
   margin: 0;
   margin-right: 20px;
 }
 
-/* line 231, ../scss/agg.scss */
+/* line 213, ../scss/agg.scss */
 .field-type-taxonomy-term-reference ul {
   margin: 0;
   display: inline;
 }
 
-/* line 235, ../scss/agg.scss */
+/* line 217, ../scss/agg.scss */
 .field-type-taxonomy-term-reference ul li {
   list-style: none;
   display: inline;
   margin-right: 20px;
 }
 
-/* line 241, ../scss/agg.scss */
+/* line 223, ../scss/agg.scss */
 .button-group .active a {
   background-color: #cacaea;
   border-color: #99f;
 }
 
-/* line 246, ../scss/agg.scss */
+/* line 228, ../scss/agg.scss */
 .node-form textarea {
   height: 300px;
 }
 
-/* line 250, ../scss/agg.scss */
+/* line 232, ../scss/agg.scss */
 .toboggan-unified #login-links a {
   display: inline-block;
   line-height: 30px;
 }
 
-/* line 255, ../scss/agg.scss */
+/* line 237, ../scss/agg.scss */
 .field,
 .view-owning-feed {
   margin: 9px 0;
 }
 
-/* line 259, ../scss/agg.scss */
+/* line 241, ../scss/agg.scss */
 .field-type-taxonomy-term-reference {
   margin: 0;
 }
 
-/* line 263, ../scss/agg.scss */
+/* line 245, ../scss/agg.scss */
 .field-label-above .field-label {
   margin-bottom: 3px;
+}
+
+/* line 248, ../scss/agg.scss */
+.field-name-source-url-modified .field-label {
+  display: inline;
 }
