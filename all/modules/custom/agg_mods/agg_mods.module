@@ -24,9 +24,16 @@ function agg_mods_permission() {
  */
 function agg_mods_preprocess_node( &$vars ) {
 
-  if ( $vars['type'] == 'imported_article'  &&
-    ! user_access( 'view imported_article metadata' ) ) {
-    _agg_mods_hide_imported_article_metadata( $vars );
+  if ( $vars['type'] == 'imported_article' ) {
+
+    // Temporary? Hide interest-groups field.
+    // Initially, we will only have one interest group
+    $vars['content']['field_interest_groups']['#access'] = FALSE;
+
+    // Does the user have permission to see other metadata?
+    if ( ! user_access( 'view imported_article metadata' ) ) {
+      _agg_mods_hide_imported_article_metadata( $vars );
+    }
   }
 }
 
