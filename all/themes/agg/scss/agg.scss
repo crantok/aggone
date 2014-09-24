@@ -201,8 +201,16 @@ margin-bottom: 1em;
     padding-left: 30px;
     margin: 0;
 }
-.node-imported-article #comments h2 {
+
+.comment-wrapper h2 {
     font-size: 1.5em;
+}
+.comment-wrapper textarea {
+  height: 150px;
+}
+.comment-wrapper form .filter-wrapper {
+    padding: 0;
+    font-size: 0.75em;
 }
 
 .field-type-taxonomy-term-reference h2 {

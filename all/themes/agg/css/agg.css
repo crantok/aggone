@@ -7507,65 +7507,76 @@ section.l-banner-columns {
   margin: 0;
 }
 
-/* line 204, ../scss/agg.scss */
-.node-imported-article #comments h2 {
+/* line 205, ../scss/agg.scss */
+.comment-wrapper h2 {
   font-size: 1.5em;
 }
 
 /* line 208, ../scss/agg.scss */
+.comment-wrapper textarea {
+  height: 150px;
+}
+
+/* line 211, ../scss/agg.scss */
+.comment-wrapper form .filter-wrapper {
+  padding: 0;
+  font-size: 0.75em;
+}
+
+/* line 216, ../scss/agg.scss */
 .field-type-taxonomy-term-reference h2 {
   font-size: 1em;
   margin: 0;
   margin-right: 20px;
 }
 
-/* line 213, ../scss/agg.scss */
+/* line 221, ../scss/agg.scss */
 .field-type-taxonomy-term-reference ul {
   margin: 0;
   display: inline;
 }
 
-/* line 217, ../scss/agg.scss */
+/* line 225, ../scss/agg.scss */
 .field-type-taxonomy-term-reference ul li {
   list-style: none;
   display: inline;
   margin-right: 20px;
 }
 
-/* line 223, ../scss/agg.scss */
+/* line 231, ../scss/agg.scss */
 .button-group .active a {
   background-color: #cacaea;
   border-color: #99f;
 }
 
-/* line 228, ../scss/agg.scss */
+/* line 236, ../scss/agg.scss */
 .node-form textarea {
   height: 300px;
 }
 
-/* line 232, ../scss/agg.scss */
+/* line 240, ../scss/agg.scss */
 .toboggan-unified #login-links a {
   display: inline-block;
   line-height: 30px;
 }
 
-/* line 237, ../scss/agg.scss */
+/* line 245, ../scss/agg.scss */
 .field,
 .view-owning-feed {
   margin: 9px 0;
 }
 
-/* line 241, ../scss/agg.scss */
+/* line 249, ../scss/agg.scss */
 .field-type-taxonomy-term-reference {
   margin: 0;
 }
 
-/* line 245, ../scss/agg.scss */
+/* line 253, ../scss/agg.scss */
 .field-label-above .field-label {
   margin-bottom: 3px;
 }
 
-/* line 248, ../scss/agg.scss */
+/* line 256, ../scss/agg.scss */
 .field-name-source-url-modified .field-label {
   display: inline;
 }
