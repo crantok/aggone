@@ -75,7 +75,8 @@ function _agg_mods_get_source_name( $vars ) {
   $html_obj =
     str_get_html( $vars['content']['owning_feed_entity_view_1']['#markup'] );
 
-  $text = $html_obj->find('.view-content a')[0]->innertext;
+  $collection = $html_obj->find('.view-content a');
+  $text = $collection[0]->innertext;
 
   // Release resources to avoid memory leak in some versions.
   $html_obj->clear();
