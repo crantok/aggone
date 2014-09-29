@@ -30,6 +30,11 @@ function metadata_preprocess_node( &$vars ) {
     // Initially, we will only have one interest group
     $vars['content']['field_interest_groups']['#access'] = FALSE;
 
+    // Regardless of who is viewing the field, make sure that external links
+    // open in a new tab.
+    $vars['content']['field_url'][0]['#element']['attributes']['target'] =
+      '_blank';
+
     // Does the user have permission to see other metadata?
     if ( ! user_access( 'view imported_article metadata' ) ) {
       _metadata_hide_imported_article_metadata( $vars );
