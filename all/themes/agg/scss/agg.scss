@@ -256,3 +256,19 @@ margin-bottom: 1em;
 .field-name-source-url-modified .field-label {
     display: inline;
 }
+
+body {
+    line-height: 1.6;
+}
+
+.l-triptych {
+  background-color: #eee;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+.l-triptych > .columns {
+  font-size: 0.75em;
+}
+.l-triptych > .columns ul {
+    padding-left: 10px;
+}

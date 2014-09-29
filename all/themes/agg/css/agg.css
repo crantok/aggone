@@ -7580,3 +7580,25 @@ section.l-banner-columns {
 .field-name-source-url-modified .field-label {
   display: inline;
 }
+
+/* line 260, ../scss/agg.scss */
+body {
+  line-height: 1.6;
+}
+
+/* line 264, ../scss/agg.scss */
+.l-triptych {
+  background-color: #eee;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+/* line 269, ../scss/agg.scss */
+.l-triptych > .columns {
+  font-size: 0.75em;
+}
+
+/* line 272, ../scss/agg.scss */
+.l-triptych > .columns ul {
+  padding-left: 10px;
+}
