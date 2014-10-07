@@ -1,0 +1,19 @@
+Content types:
+ - Importers
+ - Imported articles
+
+Views:
+ - suggested articles
+ - published articles
+ - inappropriate articles
+ - blocked articles
+ - events list
+ - events calendar
+ - events map
+ - articles topics
+
+Services:
+ - open calais
+ - botcha
+ - spambot
+ - 
