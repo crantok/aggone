@@ -62,7 +62,7 @@
         <div id="site-name">
           <strong>
 	    <?php // Hard coding the site name because we want markup in it. ?>
-	    <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home"><span>1<sup>st</sup> Sector Success</span></a>
+	    <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home"><span><?php print $site_name ?></span></a>
           </strong>
         </div>
 

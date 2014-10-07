@@ -18,7 +18,13 @@
  */
 function agg_preprocess_page(&$vars) {
 
-  // Text entered by admin about the site
+  // Add html to site name if appropriate
+  if ( strpos( $vars['site_name'], '1st' ) !== FALSE ) {
+    $vars['site_name'] =
+      str_replace( '1st', '1<sup>st</sup>', $vars['site_name'] );
+  }
+
+  // Get text entered by admin about the site
   $vars['site_about_text'] = theme_get_setting( 'site_about_text', NULL );
 
   // $title is available in page.tpl.php, but 'title' is not available in
