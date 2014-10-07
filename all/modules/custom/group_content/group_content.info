@@ -1,0 +1,3 @@
+name = Group content
+description = Hide content for interest groups but not other bundles.
+core = 7.x

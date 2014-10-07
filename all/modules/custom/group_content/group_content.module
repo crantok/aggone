@@ -1,0 +1,39 @@
+<?php
+
+/**
+ * @file
+ * Hide content for interest groups but not other bundles.
+ */
+
+
+/**
+ * Implements hook_menu_alter().
+ */
+function group_content_menu_alter(&$items) {
+  // Take over from the taxonomy module.
+  $items['taxonomy/term/%taxonomy_term']['page callback'] =
+    'group_content_term_page';
+  $items['taxonomy/term/%taxonomy_term']['page arguments'] = array(2);
+}
+
+/**
+ * Menu callback; displays all nodes associated with a term.
+ *
+ * @param object $term
+ *   The taxonomy term.
+ *
+ * @return string
+ *   The page content.
+ */
+function group_content_term_page($term) {
+
+  if ( $term->vocabulary_machine_name == 'interest_group' ){
+    // Set the title and return all the field data.
+    drupal_set_title($term->name);
+    return taxonomy_term_view($term, 'full');
+  }else{
+    // We have to pull in taxonomy's pages include to call its function.
+    module_load_include('inc', 'taxonomy', 'taxonomy.pages');
+    return taxonomy_term_page($term);
+  }
+}
