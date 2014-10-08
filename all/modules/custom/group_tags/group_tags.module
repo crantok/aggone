@@ -201,7 +201,7 @@ function _group_tags_get_tag_links($node) {
       }
     }
   }
-  dsm( $links );
+
   return $links;
 }
 

@@ -1,5 +1,7 @@
 Wed Oct  8 2014
 	- added destination to tagging links
+	- hid events from non-editors
+	-
 
 
 NEXT : try ajax reload
