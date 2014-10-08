@@ -189,7 +189,7 @@ function _group_tags_get_tag_links($node) {
 
       $path = "node/$node->nid/remove-from-interest-group/$tid";
       if ( current_user_has_access($path)) {
-        $links[] = _group_tags_get_addition_link( $path, $term );
+        $links[] = _group_tags_get_removal_link( $path, $term );
       }
     }
     else { // The current node is NOT tagged with the cuirrent interest group.
@@ -197,11 +197,11 @@ function _group_tags_get_tag_links($node) {
       $path = "node/$node->nid/add-to-interest-group/$tid";
 
       if ( current_user_has_access($path)) {
-        $links[] = _group_tags_get_removal_link( $path, $term );
+        $links[] = _group_tags_get_addition_link( $path, $term );
       }
     }
   }
-
+  dsm( $links );
   return $links;
 }
 
@@ -227,19 +227,21 @@ function _group_tags_get_nodes_interest_group_ids($node) {
   return get_one_dimensional_array_from_field_items( $groups, 'tid' );
 }
 
-function _group_tags_get_addition_link( $path, $term ) {
+function _group_tags_get_removal_link( $path, $term ) {
   return array(
     'href' => $path,
     'title' => t('Remove from interest group: @term_name',
              array( '@term_name' => $term->name ) ),
+    'query' => drupal_get_destination(),
   );
 }
 
-function _group_tags_get_removal_link( $path, $term ) {
+function _group_tags_get_addition_link( $path, $term ) {
   return array(
     'href' => $path,
     'title' => t('Add to interest group: @term_name',
              array( '@term_name' => $term->name ) ),
+    'query' => drupal_get_destination(),
   );
 }
 

@@ -1,2 +1,12 @@
-Tue Oct  7 11:57:01 BST 2014
-	- converting taxonomy term pages to views in order to allow ajax reloading
+Wed Oct  8 2014
+	- added destination to tagging links
+
+
+NEXT : try ajax reload
+
+
+Tue Oct  7 2014
+	- added dev site
+	- injected html in to site title via preprocess_page
+	- hid content listing for interest groups
+	- cloned and customised taxonomy term view for groups
