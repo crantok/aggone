@@ -1,10 +1,14 @@
+Thu Oct  9 2014
+	- fixed check_plain in copyright notice
+	- added piwik tracking
+	- 
+
+NEXT : try ajax reload
+
+
 Wed Oct  8 2014
 	- added destination to tagging links
 	- hid events from non-editors
-	-
-
-
-NEXT : try ajax reload
 
 
 Tue Oct  7 2014
