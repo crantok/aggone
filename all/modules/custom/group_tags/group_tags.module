@@ -131,7 +131,7 @@ function group_tags_entity_view($entity, $entity_type, $view_mode, $langcode) {
 
     $node->content['extended_links'] = array(
       '#type' => 'container',
-      '#attributes' => array( 'class' => array( 'extended-links', 'row' ) ),
+      '#attributes' => array( 'class' => array( 'extended-links', 'row', 'panel' ) ),
       '#weight' => 100,
     );
 
