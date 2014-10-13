@@ -106,18 +106,6 @@ function _group_terms_goto( $node ) {
 
 
 /**
- * Implements hook_node_view()
- */
-function group_tags_node_view($node, $view_mode, $langcode) {
-
-  if ( $node->type == 'imported_article' ) {
-    // Rename links area of node content before Flags module adds flag links.
-    $node->content['node_links'] = $node->content['links'];
-    unset( $node->content['links'] );
-  }
-}
-
-/**
  * Implements hook_entity_view()
  *
  * For a node:
@@ -135,16 +123,39 @@ function group_tags_entity_view($entity, $entity_type, $view_mode, $langcode) {
       '#weight' => 100,
     );
 
-    if ( isset( $node->content['node_links'] ) ) {
-      // Wrap the main node links
-      $node->content['extended_links']['node_links'] =
-        $node->content['node_links'];
+    if ( isset( $node->content['links'] ) ) {
+
+      // Split node links + flags in to separate "columns".
+
+      // Node links...
+
+      // HACK - weights don't seem to work here.
+      // HACK - remove comment links to re-add them later
+      $comment_links = $node->content['links']['comment'];
+      unset( $node->content['links']['comment'] );
+
+      // Add a link to the original article
+      $node->content['extended_links']['node_links'] = $node->content['links'];
+      $node->content['extended_links']['node_links']['remote'] = array(
+        '#links' => array( array(
+                    'href' => $node->field_url['und'][0]['url'],
+                    'title' => t('Read original article'),
+                    'attributes' => array( 'target' => '_blank' ),
+                  ) ),
+      );
+
+      // HACK continued - re-add the comment links
+      $node->content['extended_links']['node_links']['comment'] = $comment_links;
+      unset($node->content['extended_links']['node_links']['flag'] );
+
+
+      // Flag links...
+
+      $node->content['extended_links']['flag_toggle'] = $node->content['links'];
+      unset($node->content['extended_links']['flag_toggle']['node'] );
+      unset($node->content['extended_links']['flag_toggle']['comment'] );
     }
 
-    if ( isset( $node->content['links'] ) ) {
-      // Wrap the Flag toggle links ( added in flag_entity_view() )
-      $node->content['extended_links']['flag_toggle'] = $node->content['links'];
-    }
 
     // Add our own interest-group toggle links.
     $node->content['extended_links']['interest_groups_toggle'] = array(
@@ -162,11 +173,11 @@ function group_tags_entity_view($entity, $entity_type, $view_mode, $langcode) {
     $node->content['extended_links']['node_links']['#attributes']['class'][]
       = 'large-3';
 
-    $node->content['extended_links']['flag_toggle']['flag']['#attributes']['class'][]
+    $node->content['extended_links']['flag_toggle']['#attributes']['class'][]
       = 'flag-toggle';
-    $node->content['extended_links']['flag_toggle']['flag']['#attributes']['class'][]
+    $node->content['extended_links']['flag_toggle']['#attributes']['class'][]
       = 'columns';
-    $node->content['extended_links']['flag_toggle']['flag']['#attributes']['class'][]
+    $node->content['extended_links']['flag_toggle']['#attributes']['class'][]
       = 'large-4';
 
     $node->content['extended_links']['interest_groups_toggle']['#attributes']['class'][]
