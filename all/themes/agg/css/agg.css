@@ -7478,16 +7478,17 @@ section.l-banner-columns {
 }
 
 /* line 183, ../scss/agg.scss */
-.expanded .top-bar-section .block-search-form input {
+.expanded .top-bar-section .block-search-form input,
+.search-form input {
   padding: 0 10px;
 }
 
-/* line 187, ../scss/agg.scss */
+/* line 188, ../scss/agg.scss */
 .node-imported-article.node-teaser {
   margin: 50px 0 0 0;
 }
 
-/* line 190, ../scss/agg.scss */
+/* line 191, ../scss/agg.scss */
 .node-imported-article .extended-links {
   /* border-style: solid; */
   /* border-color: grey; */
@@ -7496,114 +7497,114 @@ section.l-banner-columns {
   /* vertical-align: top; */
 }
 
-/* line 197, ../scss/agg.scss */
+/* line 198, ../scss/agg.scss */
 .node-imported-article.view-mode-full .extended-links {
   margin: 20px 0 25px 0;
 }
 
-/* line 200, ../scss/agg.scss */
+/* line 201, ../scss/agg.scss */
 .node-imported-article .extended-links ul {
   padding-left: 30px;
   margin: 0;
 }
 
-/* line 205, ../scss/agg.scss */
+/* line 206, ../scss/agg.scss */
 .comment-wrapper h2 {
   font-size: 1.5em;
 }
 
-/* line 208, ../scss/agg.scss */
+/* line 209, ../scss/agg.scss */
 .comment-wrapper textarea {
   height: 150px;
 }
 
-/* line 211, ../scss/agg.scss */
+/* line 212, ../scss/agg.scss */
 .comment-wrapper form .filter-wrapper {
   padding: 0;
   font-size: 0.75em;
 }
 
-/* line 216, ../scss/agg.scss */
+/* line 217, ../scss/agg.scss */
 .field-type-taxonomy-term-reference h2 {
   font-size: 1em;
   margin: 0;
   margin-right: 20px;
 }
 
-/* line 221, ../scss/agg.scss */
+/* line 222, ../scss/agg.scss */
 .field-type-taxonomy-term-reference ul {
   margin: 0;
   display: inline;
 }
 
-/* line 225, ../scss/agg.scss */
+/* line 226, ../scss/agg.scss */
 .field-type-taxonomy-term-reference ul li {
   list-style: none;
   display: inline;
   margin-right: 20px;
 }
 
-/* line 231, ../scss/agg.scss */
+/* line 232, ../scss/agg.scss */
 .button-group .active a {
   background-color: #cacaea;
   border-color: #99f;
 }
 
-/* line 236, ../scss/agg.scss */
+/* line 237, ../scss/agg.scss */
 .node-form textarea {
   height: 300px;
 }
 
-/* line 240, ../scss/agg.scss */
+/* line 241, ../scss/agg.scss */
 .toboggan-unified #login-links a {
   display: inline-block;
   line-height: 30px;
 }
 
-/* line 245, ../scss/agg.scss */
+/* line 246, ../scss/agg.scss */
 .field,
 .view-owning-feed {
   margin: 9px 0;
 }
 
-/* line 249, ../scss/agg.scss */
+/* line 250, ../scss/agg.scss */
 .field-type-taxonomy-term-reference {
   margin: 0;
 }
 
-/* line 253, ../scss/agg.scss */
+/* line 254, ../scss/agg.scss */
 .field-label-above .field-label {
   margin-bottom: 3px;
 }
 
-/* line 256, ../scss/agg.scss */
+/* line 257, ../scss/agg.scss */
 .field-name-source-url-modified .field-label {
   display: inline;
 }
 
-/* line 260, ../scss/agg.scss */
+/* line 261, ../scss/agg.scss */
 body {
   line-height: 1.6;
 }
 
-/* line 263, ../scss/agg.scss */
+/* line 264, ../scss/agg.scss */
 #site-name {
   line-height: 1;
 }
 
-/* line 267, ../scss/agg.scss */
+/* line 268, ../scss/agg.scss */
 .l-triptych {
   background-color: #eee;
   margin-top: 15px;
   margin-bottom: 15px;
 }
 
-/* line 272, ../scss/agg.scss */
+/* line 273, ../scss/agg.scss */
 .l-triptych > .columns {
   font-size: 0.75em;
 }
 
-/* line 275, ../scss/agg.scss */
+/* line 276, ../scss/agg.scss */
 .l-triptych > .columns ul {
   padding-left: 10px;
 }
@@ -7612,12 +7613,12 @@ body {
   Hiding title of taxonomy term but only when it appears in the view header
   for a taxonomy term page.
 */
-/* line 283, ../scss/agg.scss */
+/* line 284, ../scss/agg.scss */
 .view-taxonomy-term > .view-header > .view-taxonomy-term-header > .view-content > .views-row-1 > .taxonomy-term > h2 {
   display: none;
 }
 
-/* line 287, ../scss/agg.scss */
+/* line 288, ../scss/agg.scss */
 .view > .pagination-centered {
   margin: 25px 0 10px 0;
 }
