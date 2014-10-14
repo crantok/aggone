@@ -7607,3 +7607,12 @@ body {
 .l-triptych > .columns ul {
   padding-left: 10px;
 }
+
+/*
+  Hiding title of taxonomy term but only when it appears in the view header
+  for a taxonomy term page.
+*/
+/* line 283, ../scss/agg.scss */
+.view-taxonomy-term > .view-header > .view-taxonomy-term-header > .view-content > .views-row-1 > .taxonomy-term > h2 {
+  display: none;
+}
