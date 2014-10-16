@@ -117,6 +117,12 @@ function group_tags_entity_view($entity, $entity_type, $view_mode, $langcode) {
   if ( $entity_type == 'node' && $entity->type == 'imported_article' ) {
     $node = $entity;
 
+    $node->content['links-separator'] = array(
+      '#type' => 'markup',
+      '#markup' => '<div class="links-separator"></div>',
+      '#weight' => 99,
+    );
+
     $node->content['extended_links'] = array(
       '#type' => 'container',
       '#attributes' => array( 'class' => array( 'extended-links', 'row', 'panel' ) ),

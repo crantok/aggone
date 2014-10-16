@@ -7622,3 +7622,34 @@ body {
 .view > .pagination-centered {
   margin: 25px 0 10px 0;
 }
+
+/* line 292, ../scss/agg.scss */
+.view-taxonomy-term > .view-content > .views-row-odd div.image {
+  float: left;
+  margin-right: 10px;
+}
+
+/* line 297, ../scss/agg.scss */
+.view-taxonomy-term > .view-content > .views-row-even div.image {
+  float: right;
+  margin-right: 10px;
+}
+
+/* line 302, ../scss/agg.scss */
+.view-taxonomy-term > .view-content > .views-row div.links-separator {
+  clear: both;
+  margin-bottom: 10px;
+}
+
+/* line 307, ../scss/agg.scss */
+.privileged-user .view-taxonomy-term > .view-content > .views-row div.image {
+  float: none;
+  margin-right: 0;
+  margin-left: 0;
+}
+
+/* line 313, ../scss/agg.scss */
+.privileged-user .view-taxonomy-term > .view-content > .views-row div.link-separator {
+  clear: none;
+  margin: 0;
+}
