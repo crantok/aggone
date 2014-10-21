@@ -1,4 +1,4 @@
- <?php
+<?php
 
 /**
  * @file
@@ -84,7 +84,7 @@ dsm( $name );
  *
  * @return
  *   An array with key "success" (always) and key "value" (if successful).
- */ 
+ */
 function _jit_variable_get_db_value( $name ) {
 
   $result = db_select( 'jit_variable', 'j' )
