@@ -136,7 +136,6 @@ function group_tags_entity_view($entity, $entity_type, $view_mode, $langcode) {
     );
 
     if ( isset( $node->content['links'] ) ) {
-      dsm( $node->content['links'] );
 
       // Move all $node->content['links']['node']["socialmedia_*"] to the
       // social-media-links container.
