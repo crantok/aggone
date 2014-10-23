@@ -120,6 +120,12 @@ function group_tags_entity_view($entity, $entity_type, $view_mode, $langcode) {
     $node->content['links-separator'] = array(
       '#type' => 'markup',
       '#markup' => '<div class="links-separator"></div>',
+      '#weight' => 98,
+    );
+
+    $node->content['social-media-links'] = array(
+      '#type' => 'container',
+      '#attributes' => array( 'class' => array( 'social-media-links' ) ),
       '#weight' => 99,
     );
 
@@ -130,6 +136,17 @@ function group_tags_entity_view($entity, $entity_type, $view_mode, $langcode) {
     );
 
     if ( isset( $node->content['links'] ) ) {
+      dsm( $node->content['links'] );
+
+      // Move all $node->content['links']['node']["socialmedia_*"] to the
+      // social-media-links container.
+      foreach ( $node->content['links']['node']['#links'] as $key => $link ) {
+        if ( strpos( $key, 'socialmedia_' ) === 0 ) {
+          $node->content['social-media-links'][$key] = array();
+          $node->content['social-media-links'][$key]['#markup'] = $link['title'];
+          unset( $node->content['links']['node']['#links'][$key] );
+        }
+      }
 
       // Split node links + flags in to separate "columns".
 
