@@ -7663,3 +7663,8 @@ body {
   clear: none;
   margin: 0;
 }
+
+/* line 324, ../scss/agg.scss */
+.widgets-element-horizontal {
+  margin-right: 5px;
+}
